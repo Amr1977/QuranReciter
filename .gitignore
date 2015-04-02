@@ -1,0 +1,14 @@
+/bin
+/nbproject/private/
+*.class
+/dist/
+/build/
+.sonar
+javazoom.jlGui.BasicPlayer - Java Examples_files
+nbproject
+*.jar
+/*.jar
+images
+.settings
+bin
+build
