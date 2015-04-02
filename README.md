@@ -10,9 +10,6 @@ You can control memorization as follow:
 
 MP3 are streamed as needed and stored locally for repeated use.
 
-- Extract the archive  Deploy/reciter.zip to D:\reciter 
-- Launch D:\reciter\run.cmd script or D:\reciter\QuranReciter.jar
-
 currently only windows is supported but I am considering to make it support ubuntu as soon as I can inshallah.
 
 
