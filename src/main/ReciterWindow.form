@@ -139,7 +139,11 @@
                                               </Group>
                                           </Group>
                                       </Group>
+<<<<<<< HEAD
                                       <Component id="jScrollPane4" alignment="0" min="-2" pref="829" max="-2" attributes="0"/>
+=======
+                                      <Component id="jScrollPane4" alignment="0" min="-2" pref="1379" max="-2" attributes="0"/>
+>>>>>>> af1d170cfb7770129c086a95885e60f7235c8655
                                   </Group>
                               </Group>
                               <Group type="102" attributes="0">
@@ -149,7 +153,11 @@
                                   <Component id="fitWidth" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
+<<<<<<< HEAD
                           <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+=======
+                          <EmptySpace max="-2" attributes="0"/>
+>>>>>>> af1d170cfb7770129c086a95885e60f7235c8655
                           <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -226,7 +234,11 @@
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
                           <EmptySpace min="0" pref="726" max="32767" attributes="0"/>
+=======
+                          <EmptySpace min="0" pref="736" max="32767" attributes="0"/>
+>>>>>>> af1d170cfb7770129c086a95885e60f7235c8655
                       </Group>
                     </DimensionLayout>
                   </Layout>
@@ -798,7 +810,11 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
                       <EmptySpace min="0" pref="737" max="32767" attributes="0"/>
+=======
+                      <EmptySpace min="0" pref="747" max="32767" attributes="0"/>
+>>>>>>> af1d170cfb7770129c086a95885e60f7235c8655
                   </Group>
                 </DimensionLayout>
               </Layout>
