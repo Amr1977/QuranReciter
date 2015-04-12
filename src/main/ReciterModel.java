@@ -32,6 +32,7 @@ import javazoom.jlgui.basicplayer.BasicPlayerException;
 import logging.Logging;
 import logging.TextFiles;
 import logging.FreeTTS;
+import static logging.Logging.log;
 
 //TODO mode 4 add mode each reciter reads complete sura,others read same sura afterwards
 //TODO mode 5 add mode each reciter reads complete sura,others read next suras afterwards
@@ -46,7 +47,7 @@ public class ReciterModel {
         public static boolean randomReciter=false;
         public static boolean randomDelay=false;
         public static boolean speech=false;
-	public static String baseFolder=(new File("d:/reciter/").exists()? "d:/reciter/":TextFiles.getStartLocation());	
+	public static String baseFolder=TextFiles.getStartLocation();//+"/";	
 	public static int[] ayatCount = { 
 		0, 
 		7,//1
@@ -164,7 +165,7 @@ public class ReciterModel {
 		5,
 		6 //114 
 	};
-	public static String[] mashayekh=arrayListToArray(TextFiles.load(baseFolder+"/readers.txt"));
+	public static String[] mashayekh=arrayListToArray(TextFiles.load(baseFolder+"readers.txt"));
 
 	public static String[] arrayListToArray(ArrayList<String> al){
 		if (al==null){
@@ -392,7 +393,7 @@ public class ReciterModel {
 			currentMode=0;
 		}else{
 			if(new File(baseFolder+"reciter-state.txt").exists()){
-				ArrayList<String> lines=TextFiles.load(baseFolder+"/reciter-state.txt");
+				ArrayList<String> lines=TextFiles.load(baseFolder+"reciter-state.txt");
 				for(String s:lines){
 					String[] terms=s.split("=");
 					if (terms.length!=2){//if invalid line skip it
@@ -459,11 +460,21 @@ public class ReciterModel {
                                         case "random_delay":
                                             randomDelay=("1".equals(terms[1]));
                                             break;
+                                        
 					default : Logging.log("can't parse ["+s+"]");
 					}
 				}
 
 			} else{
+				if (mashayekh==null){
+                                    mashayekh=arrayListToArray(TextFiles.load(baseFolder+"readers.txt"));
+                                    log("mashayekh was null");
+                                }else{
+                                    log("mashayekh not null, size="+mashayekh.length);
+                                    mashayekh=arrayListToArray(TextFiles.load(baseFolder+"readers.txt"));
+                                    log("mashayekh not null, reloaded, size="+mashayekh.length);
+                                    
+                                }
 				reciterName=mashayekh[0];	reciter=0;
 				sura=1;
 				ayaStart=1;
@@ -519,7 +530,7 @@ public class ReciterModel {
 		}
 		for (int aya=startAya;aya<=endAya;aya++){
 			String foldername=baseFolder+"mp3/"+mashayekh[sheikhID]+"/"+leadingZeros(sura,3);
-			String filename=baseFolder+"/mp3/"+mashayekh[sheikhID]+"/"+leadingZeros(sura,3)+"/"+leadingZeros(sura,3)+leadingZeros(aya,3)+".mp3";
+			String filename=baseFolder+"mp3/"+mashayekh[sheikhID]+"/"+leadingZeros(sura,3)+"/"+leadingZeros(sura,3)+leadingZeros(aya,3)+".mp3";
 			String fileUrl="http://www.everyayah.com/data/"+mashayekh[sheikhID]+"/"+leadingZeros(sura,3)+leadingZeros(aya,3)+".mp3";
 			try{
 				new File(foldername).mkdirs();
@@ -583,8 +594,8 @@ public class ReciterModel {
 			try {
 				player.open(new URL("file:///" + fileName));
 				Logger.getLogger(BasicPlayer.class.getName()).setLevel(Level.OFF);
-				common.Timer.remove(mashayekh[reciter]+"/"+leadingZeros(sura,3));
-				common.Timer.start(mashayekh[reciter]+"/"+leadingZeros(sura,3));
+				//common.Timer.remove(mashayekh[reciter]+"/"+leadingZeros(sura,3));
+				//common.Timer.start(mashayekh[reciter]+"/"+leadingZeros(sura,3));
 				player.play();
 				//Logging.log("sleep time: "+player.getSleepTime()); //that returned -1 !!
 				//Logging.log("player.getSleepTime()="+player.getSleepTime());
@@ -649,7 +660,7 @@ public class ReciterModel {
 			@Override
 			public void run(){
 				try {
-					Logging.log("ShutdownHook: saving state...",1);
+					Logging.log("ShutdownHook: saving state...",(speech? 1:0));
 					ReciterModel.saveState();
 				} catch (IOException e) {
 					recordStackTrace( e);
@@ -658,11 +669,11 @@ public class ReciterModel {
 			}
 		});
 
-		new File(baseFolder+"/log").mkdirs();
-		Logging.setLogFile(baseFolder+"/log/"+Logging.getTimeStamp()+".txt");
+		new File(baseFolder+"log").mkdirs();
+		Logging.setLogFile(baseFolder+"log/"+Logging.getTimeStamp()+".txt");
 		Logging.log("=========================================================================");
-		Logging.log("Besmellah !",1);
-		Logging.log("MP3s Downloaded from www.EveryAyah.com",1);
+		Logging.log("Besmellah !",(speech? 1:0));
+		Logging.log("MP3s Downloaded from www.EveryAyah.com",(speech? 1:0));
 		Logging.log(" ");
 		Random r=new Random();
 		Random rWait=new Random();
@@ -675,19 +686,19 @@ public class ReciterModel {
 		int ayaCount=0;
 		while (true){
 			if (currentMode==0){
-				Logging.log("Current Mode: Normal.",1);
+				Logging.log("Current Mode: Normal.",(speech? 1:0));
 			} else if (currentMode==1){
-				Logging.log("Current Mode: Rabani.",1);
+				Logging.log("Current Mode: Rabani.",(speech? 1:0));
 			}else if (currentMode==2){
-				Logging.log("Current Mode: Full.",1);
+				Logging.log("Current Mode: Full.",(speech? 1:0));
 			}else if (currentMode==3){
-				Logging.log("Current Mode: Alternating readers.",1);
+				Logging.log("Current Mode: Alternating readers.",(speech? 1:0));
 			}
 			Logging.log("sura: "+Sura_Name[sura]);
 			//	repeat entire sura
 			for(int repeatSura=1; (repeatSura<=groupRepeatCount)||(SURA_REPEAT_FOREVER);repeatSura++){
 
-				Logging.log("Sura repeat number "+repeatSura+" of "+groupRepeatCount,1);
+				Logging.log("Sura repeat number "+repeatSura+" of "+groupRepeatCount,(speech? 1:0));
 
 				//add basmalla
 
@@ -699,7 +710,7 @@ public class ReciterModel {
 					readAya(reciter, 1, 1);
 				}
 				//ayaEnd=ayatCount[sura];
-				Logging.log("Sura number "+sura+" "+Sura_Name[sura],1);
+				Logging.log("Sura number "+sura+" "+Sura_Name[sura],(speech? 1:0));
 				for (int aya=ayaStart; aya<=ayaEnd;aya++){
 					if (justStarted){
 						aya=currentAya;
@@ -714,7 +725,7 @@ public class ReciterModel {
 							currentAya=aya;
 						}
 					}
-					Logging.log("Aya number "+currentAya,1);
+					Logging.log("Aya number "+currentAya,(speech? 1:0));
 					if (SURA_CHANGE){
 						ayaStart=1;
 						ayaEnd=ayatCount[sura];
@@ -727,18 +738,18 @@ public class ReciterModel {
 					}
 					if (showImages){
 						try {
-							BaseTest.executer("cmd", "/c start /max "+baseFolder+"/images/"+sura+"_"+currentAya+".png");
+							BaseTest.executer("cmd", "/c start /max "+baseFolder+"images/"+sura+"_"+currentAya+".png");
 						} catch (IOException e) {
 							Logging.log(e);
 						}
 					}
 					for(int k=1;((k<=ayaRepeatCount)||(AYA_REPEAT_FOREVER))&&(!AYA_CHANGE);k++){
 						while (PAUSE&&(!EXIT)){
+							ReciterWindow.refreshState();
 							Thread.sleep(1000);
                                                         if (SURA_CHANGE){
                                                             break;
                                                         }
-							ReciterWindow.refreshState();
 							
 						}
                                                 if (SURA_CHANGE){
@@ -801,7 +812,7 @@ public class ReciterModel {
 				}
 				ayaStart=1;
 				ayaEnd=ayatCount[sura];
-				Logging.log("Going to next sura: "+Sura_Name[sura],1);
+				Logging.log("Going to next sura: "+Sura_Name[sura],(speech? 1:0));
 			}else{
 				SURA_CHANGE=false;
 			}
@@ -818,7 +829,7 @@ public class ReciterModel {
 		case "help":
 		case "/?":
 		case "?":
-			Logging.log("Command list:",1);
+			Logging.log("Command list:",(speech? 1:0));
 			Logging.logLines(TextFiles.getStartLocation()+"/help.txt");
 			break;
 
@@ -833,7 +844,7 @@ public class ReciterModel {
                             case "sure":
                             case "s":
                                 randomSura=!randomSura;
-                                Logging.log("randomSura: "+(randomSura?"ON":"OFF"),1);
+                                Logging.log("randomSura: "+(randomSura?"ON":"OFF"),(speech? 1:0));
                                 break;
                             case "delay":
                             case "wait":
@@ -851,7 +862,7 @@ public class ReciterModel {
 		case "r":
 			try{
 				reciter=Integer.valueOf(terms[1]);
-				Logging.log("Reciter set to ["+mashayekh[reciter]+"]",1);
+				Logging.log("Reciter set to ["+mashayekh[reciter]+"]",(speech? 1:0));
 			}catch(Exception e){
 				Logging.log(e);
 			}
@@ -859,18 +870,18 @@ public class ReciterModel {
 		case "start":
 			try{
 				ayaStart=Integer.valueOf(terms[1]);
-				Logging.log("Start aya set to ["+ayaStart+"]",1);
+				Logging.log("Start aya set to ["+ayaStart+"]",(speech? 1:0));
 			}catch(Exception e){
-				Logging.log("Start aya unchanged ["+ayaStart+"]",1);
+				Logging.log("Start aya unchanged ["+ayaStart+"]",(speech? 1:0));
 			}
 			break;
 
 		case "end":
 			try{
 				ayaEnd=Integer.valueOf(terms[1]);
-				Logging.log("End aya set to ["+ayaEnd+"]",1);
+				Logging.log("End aya set to ["+ayaEnd+"]",(speech? 1:0));
 			}catch(Exception e){
-				Logging.log("End aya unchanged ["+ayaEnd+"]",1);
+				Logging.log("End aya unchanged ["+ayaEnd+"]",(speech? 1:0));
 			}
 			break;
 
@@ -904,7 +915,7 @@ public class ReciterModel {
 					
 
 				}
-				Logging.log("Mode set to ["+currentMode+"]",1);
+				Logging.log("Mode set to ["+currentMode+"]",(speech? 1:0));
 			}catch(Exception e){
 				Logging.log(e);
 			}
@@ -919,7 +930,7 @@ public class ReciterModel {
 				ayaStart=1;
 				ayaEnd=ayatCount[sura];
 				currentAya=1;
-				Logging.log("Sura set to ["+Sura_Name[sura]+"]",1);
+				Logging.log("Sura set to ["+Sura_Name[sura]+"]",(speech? 1:0));
 			}catch(Exception e){
 				Logging.log(e);
 			}
@@ -930,7 +941,7 @@ public class ReciterModel {
 			try{
 				currentAya=Integer.valueOf(terms[1]);
 				AYA_CHANGE=true;
-				Logging.log("Aya set to ["+currentAya+"]",1);
+				Logging.log("Aya set to ["+currentAya+"]",(speech? 1:0));
 			}catch(Exception e){
 				Logging.log(e);
 			}
@@ -940,13 +951,13 @@ public class ReciterModel {
 			try{
 				if (terms.length==2){
 					ayaRepeatCount=Integer.valueOf(terms[1]);
-					Logging.log("Aya repeat set to ["+ayaRepeatCount+"] times.",1);
+					Logging.log("Aya repeat set to ["+ayaRepeatCount+"] times.",(speech? 1:0));
 				}else{
 					AYA_REPEAT_FOREVER=!AYA_REPEAT_FOREVER;
 					if (AYA_REPEAT_FOREVER){
-						Logging.log("REPEAT FOR EVER MODE ENABLED.",1);
+						Logging.log("REPEAT FOR EVER MODE ENABLED.",(speech? 1:0));
 					} else{
-						Logging.log("REPEAT FOR EVER MODE DISABLED.",1);
+						Logging.log("REPEAT FOR EVER MODE DISABLED.",(speech? 1:0));
 					}
 				}
 
@@ -959,14 +970,14 @@ public class ReciterModel {
 			//TODO fix range checking
 			currentAya++;
 			AYA_CHANGE=true;
-			Logging.log("going to next aya ["+currentAya+"]",1);
+			Logging.log("going to next aya ["+currentAya+"]",(speech? 1:0));
 			break;
 
 		case "aya-":
 			//TODO fix range checking
 			currentAya--;
 			AYA_CHANGE=true;
-			Logging.log("going to previous aya ["+currentAya+"]",1);
+			Logging.log("going to previous aya ["+currentAya+"]",(speech? 1:0));
 			break;
 
 		case "sura+":
@@ -975,7 +986,7 @@ public class ReciterModel {
 			}else{
 				sura+=1;
 			}
-			Logging.log("going to next sura ["+Sura_Name[sura]+"]",1);
+			Logging.log("going to next sura ["+Sura_Name[sura]+"]",(speech? 1:0));
 			SURA_CHANGE=true;
 			break;
 
@@ -986,7 +997,7 @@ public class ReciterModel {
 				sura-=1;
 			}
 			SURA_CHANGE=true;
-			Logging.log("going to previous sura ["+Sura_Name[sura]+"]",1);
+			Logging.log("going to previous sura ["+Sura_Name[sura]+"]",(speech? 1:0));
 			break;
 
 		case "n":
@@ -1001,7 +1012,7 @@ public class ReciterModel {
 				if(currentAya<ayatCount[sura]){
 					currentAya++;
 					AYA_CHANGE=true;
-					Logging.log("going to next aya ["+currentAya+"]",1);
+					Logging.log("going to next aya ["+currentAya+"]",(speech? 1:0));
 				}else{
 					if(sura==114){
 						sura=1;
@@ -1010,7 +1021,7 @@ public class ReciterModel {
 					}
 					currentAya=1;
 					AYA_CHANGE=true;
-					Logging.log("going to next sura ["+Sura_Name[sura]+"], #"+sura,1);
+					Logging.log("going to next sura ["+Sura_Name[sura]+"], #"+sura,(speech? 1:0));
 					SURA_CHANGE=true;
 				}
 				break;
@@ -1021,7 +1032,7 @@ public class ReciterModel {
 				} else{
 					reciter=0;
 				}
-				Logging.log("Reader set to "+mashayekh[reciter]+", #"+reciter,1);
+				Logging.log("Reader set to "+mashayekh[reciter]+", #"+reciter,(speech? 1:0));
 				break;
 			default:
 				if(sura==114){
@@ -1029,7 +1040,7 @@ public class ReciterModel {
 				}else{
 					sura+=1;
 				}
-				Logging.log("going to next sura ["+Sura_Name[sura]+"], #"+sura,1);
+				Logging.log("going to next sura ["+Sura_Name[sura]+"], #"+sura,(speech? 1:0));
 				SURA_CHANGE=true;
 				break;
 			}
@@ -1051,12 +1062,12 @@ public class ReciterModel {
 					}else{
 						sura-=1;
 					}
-					Logging.log("going to previous sura ["+Sura_Name[sura]+"], #"+sura,1);
+					Logging.log("going to previous sura ["+Sura_Name[sura]+"], #"+sura,(speech? 1:0));
 					currentAya=ayatCount[sura];
 					SURA_CHANGE=true;
 				}
 				AYA_CHANGE=true;
-				Logging.log("going to previous aya #"+currentAya,1);
+				Logging.log("going to previous aya #"+currentAya,(speech? 1:0));
 				break;
 			case "reader":
 			case "reciter":
@@ -1065,7 +1076,7 @@ public class ReciterModel {
 				} else{
 					reciter=(mashayekh.length-1);
 				}
-				Logging.log("Reader set to "+mashayekh[reciter]+", #"+reciter,1);
+				Logging.log("Reader set to "+mashayekh[reciter]+", #"+reciter,(speech? 1:0));
 				break;
 			default:
 				if(sura==1){
@@ -1073,7 +1084,7 @@ public class ReciterModel {
 				}else{
 					sura-=1;
 				}
-				Logging.log("going to previous sura ["+Sura_Name[sura]+"], #"+sura,1);
+				Logging.log("going to previous sura ["+Sura_Name[sura]+"], #"+sura,(speech? 1:0));
 				SURA_CHANGE=true;
 				break;
 			}
@@ -1083,10 +1094,10 @@ public class ReciterModel {
 			try{
 				if (terms.length==2){
 					groupRepeatCount=Integer.valueOf(terms[1]);
-					Logging.log("Sura repeat set to ["+groupRepeatCount+"] times.",1);
+					Logging.log("Sura repeat set to ["+groupRepeatCount+"] times.",(speech? 1:0));
 				}else{
 					SURA_REPEAT_FOREVER=!SURA_REPEAT_FOREVER;
-					Logging.log("sura repeat forever "+(SURA_REPEAT_FOREVER?"ON":"OFF"),1);
+					Logging.log("sura repeat forever "+(SURA_REPEAT_FOREVER?"ON":"OFF"),(speech? 1:0));
 				}
 
 			}catch(Exception e){
@@ -1100,7 +1111,7 @@ public class ReciterModel {
 			try{
 
 				ayaWait=Integer.valueOf(terms[1]);
-				Logging.log("Delay set to ["+ayaWait+"] milliseconds.",1);
+				Logging.log("Delay set to ["+ayaWait+"] milliseconds.",(speech? 1:0));
 
 			}catch(Exception e){
 				Logging.log(e);
@@ -1110,13 +1121,13 @@ public class ReciterModel {
 			try{
 				if ("on".equals(terms[1])){
 					DOWNLOAD_ONLY=true;
-					Logging.log("DOWNLOAD_ONLY is turned ON.",1);
+					Logging.log("DOWNLOAD_ONLY is turned ON.",(speech? 1:0));
 				}else if ("off".equals(terms[1])){
 					DOWNLOAD_ONLY=false;
-					Logging.log("DOWNLOAD_ONLY is turned OFF.",1);
+					Logging.log("DOWNLOAD_ONLY is turned OFF.",(speech? 1:0));
 				}
 			}catch(Exception e){
-				Logging.log("DOWNLOAD_ONLY is "+(DOWNLOAD_ONLY?"ON.":"OFF."),1);
+				Logging.log("DOWNLOAD_ONLY is "+(DOWNLOAD_ONLY?"ON.":"OFF."),(speech? 1:0));
 			}
 			break;
 
@@ -1124,13 +1135,13 @@ public class ReciterModel {
 		case "stop":
 		case "p":
 			PAUSE=!PAUSE;
-			Logging.log((PAUSE?"pause.":"continue."),1);
+			Logging.log((PAUSE?"pause.":"continue."),(speech? 1:0));
 			break;
 
 		case "resume":
 		case "go":
 		case "continue":
-			Logging.log("Resuming ... :)",1);
+			Logging.log("Resuming ... :)",(speech? 1:0));
 			PAUSE=false;
 			break;
 
@@ -1138,12 +1149,12 @@ public class ReciterModel {
 		case "x":
 		case "quit":
 		case "q":
-			Logging.log("Exiting ... ",1);
+			Logging.log("Exiting ... ",(speech? 1:0));
 			EXIT=true;
 			break;
 		case "save":
 			try {
-				Logging.log("Saving state ... ",1);
+				Logging.log("Saving state ... ",(speech? 1:0));
 				saveState();
 			} catch (IOException e2) {
 				Logging.log(e2);
@@ -1204,7 +1215,7 @@ public class ReciterModel {
 			break;
 		case "images":
 			showImages=!showImages;
-			Logging.log("showImages:"+showImages,1);
+			Logging.log("showImages:"+showImages,(speech? 1:0));
 			break;
 		case "speech":
 			try{
@@ -1218,27 +1229,27 @@ public class ReciterModel {
 			}catch(Exception e){
 				FreeTTS.MUTE=!FreeTTS.MUTE;
 			}
-			Logging.log("Speech is "+(FreeTTS.MUTE? "OFF":"ON"),1);
+			Logging.log("Speech is "+(FreeTTS.MUTE? "OFF":"ON"),(speech? 1:0));
 			break;
 		case "arepeat+":
 			ayaRepeatCount++;
-			Logging.log("aya repeat set to "+ayaRepeatCount,1);
+			Logging.log("aya repeat set to "+ayaRepeatCount,(speech? 1:0));
 			break;
 		case "arepeat-":
 			if(ayaRepeatCount-1>0){
 				ayaRepeatCount--;
-				Logging.log("aya repeat set to "+ayaRepeatCount,1);
+				Logging.log("aya repeat set to "+ayaRepeatCount,(speech? 1:0));
 			}
 			break;
 		case "srepeat+":
 			groupRepeatCount++;
-			Logging.log("sura repeat set to "+groupRepeatCount,1);
+			Logging.log("sura repeat set to "+groupRepeatCount,(speech? 1:0));
 			break;
 
 		case "srepeat-":
 			if(groupRepeatCount-1>0){
 				groupRepeatCount--;
-				Logging.log("sura repeat set to "+groupRepeatCount,1);
+				Logging.log("sura repeat set to "+groupRepeatCount,(speech? 1:0));
 			}
 			break;
 		case "volume":
@@ -1246,10 +1257,10 @@ public class ReciterModel {
 				if (terms.length==2){
 					if ("up".equalsIgnoreCase(terms[1])){
 						BaseTest.executer("cmd","/c nircmdc.exe changesysvolume 3000");
-						Logging.log("Volume up.",1);
+						Logging.log("Volume up.",(speech? 1:0));
 					}else if ("down".equalsIgnoreCase(terms[1])){
 						BaseTest.executer("cmd","/c nircmdc.exe changesysvolume -3000");
-						Logging.log("Volume down. ",1);
+						Logging.log("Volume down. ",(speech? 1:0));
 					}
 				}
 			}catch(Exception e){
@@ -1258,6 +1269,7 @@ public class ReciterModel {
 			
 			break;
 		case "split":
+                    log("Split not yet implemented !");
 			//get current position and record it in a text file with same name but with another extension
 			//TODO
 			/**
@@ -1265,18 +1277,20 @@ public class ReciterModel {
 			 * save to time splitting file
 			 * 
 			 */
+                    /*
 			try {
 				TextFiles.save(baseFolder+"mp3/"+mashayekh[reciter]+"/"+leadingZeros(sura,3)+"/split.txt", Long.toString(common.Timer.getTime(mashayekh[reciter]+"/"+leadingZeros(sura,3))));
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
+                            */
 			
 
 			break;
 		//fourcePause
 		case "fpause":
 			PAUSE=!PAUSE;
-			Logging.log((PAUSE?"Force pause.":"Force continue."),1);	
+			Logging.log((PAUSE?"Force pause.":"Force continue."),(speech? 1:0));	
 			if(PAUSE){
 				try {
 					player.pause();
@@ -1294,13 +1308,13 @@ public class ReciterModel {
 		
 			
 		default:
-			Logging.log("unknown command ["+command+"]",1);
+			Logging.log("unknown command ["+command+"]",(speech? 1:0));
 
 		}
 		ReciterWindow.refreshState();
 	}
 	public static void shell(){
-		Logging.log("Build: "+TextFiles.JAR_BUILD, 1);
+		Logging.log("Build: "+TextFiles.JAR_BUILD, (speech? 1:0));
 		Scanner input=new Scanner(System.in);
 		String command="";
 
