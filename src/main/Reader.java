@@ -2,6 +2,7 @@ package main;
 
 import logging.Logging;
 import logging.TextFiles;
+import static main.ReciterModel.speech;
 
 public class Reader implements Runnable{
 
@@ -16,8 +17,8 @@ public class Reader implements Runnable{
 	
 	
 	public static void read(){
-		Logging.log("Besmellah !",1);
-		Logging.log("Verses Downloaded from  www.EveryAyah.com",1);
+		Logging.log("Besmellah !",(speech? 1:0));
+		Logging.log("Verses Downloaded from  www.EveryAyah.com",(speech? 1:0));
 		Logging.log("Build: "+TextFiles.getBuildDate());
 		Thread t=new Thread(new Reader(), "Quran Reader Thread");
 		t.start();

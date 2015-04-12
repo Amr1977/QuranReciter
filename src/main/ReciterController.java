@@ -5,6 +5,7 @@ import com.melloware.jintellitype.HotkeyListener;
 
 import common.GlobalHotKeys;
 import logging.Logging;
+import static main.ReciterModel.speech;
 
 public class ReciterController extends GlobalHotKeys implements Runnable,HotkeyListener{
 	ReciterController(){
@@ -99,11 +100,11 @@ public class ReciterController extends GlobalHotKeys implements Runnable,HotkeyL
 			}
 			break;
 		case GlobalHotKeys.KEY_NUM_0:
-			Logging.log("Ok, see you, assalamu alaikom.",1);
+			Logging.log("Ok, see you, assalamu alaikom.",(speech? 1:0));
 			logging.FreeTTS.MUTE=true;
 			break;
 		case GlobalHotKeys.KEY_NUM_1:
-			Logging.log("Assalamu alaikom :)",1);
+			Logging.log("Assalamu alaikom :)",(speech? 1:0));
 			logging.FreeTTS.MUTE=false;
 			break;
 		case GlobalHotKeys.KEY_NUM_PLUS:

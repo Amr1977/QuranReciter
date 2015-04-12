@@ -15820,3 +15820,27 @@
 [2014-10-25 03:09:02.628] ShutdownHook: saving state...
 [2014-10-25 03:09:02.632] states saved.
 [2014-10-25 04:37:11.271] main.ReciterModel.main(ReciterModel.java:879)
+[2015-04-08 10:16:12.967] start Location: /E:/gdrive/Workspace/sound/build/classes/
+[2015-04-08 10:16:12.968] file not exist: /E:/gdrive/Workspace/sound/build/classes/readers.txt
+[2015-04-08 10:16:12.970] lines returned: 0
+[2015-04-08 10:16:12.970] Build: 20150408-101612-966
+[2015-04-08 10:46:19.259] start Location: E:\gdrive\Workspace\QuranReciter
+
+[2015-04-08 10:46:19.260] not running from a jar file.
+[2015-04-08 10:46:19.261] start Location: E:\gdrive\Workspace\QuranReciter
+
+[2015-04-08 10:46:19.262] file not exist: E:\gdrive\Workspace\QuranReciter
+readers.txt
+[2015-04-08 10:46:19.262] lines returned: 0
+[2015-04-08 10:46:19.263] Build: 20150408-104619-259
+[2015-04-08 10:47:24.312] start Location: E:\gdrive\Workspace\QuranReciter
+
+[2015-04-08 10:47:24.313] not running from a jar file.
+[2015-04-08 10:47:24.314] start Location: E:\gdrive\Workspace\QuranReciter
+
+[2015-04-08 10:47:24.316] Load: E:\gdrive\Workspace\QuranReciter
+readers.txt
+[2015-04-08 10:47:24.317] file not exist: E:\gdrive\Workspace\QuranReciter
+readers.txt
+[2015-04-08 10:47:24.317] lines returned: 0
+[2015-04-08 10:47:24.318] Build: 20150408-104724-312
