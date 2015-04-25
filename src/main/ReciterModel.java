@@ -42,11 +42,11 @@ public class ReciterModel {
 	public static int NORMAL_MODE=0;
 	public static int RABANI_MODE=1;
 	public static int FULL_MODE=2;
-        public static boolean randomSura=false;
-        public static boolean randomReciter=false;
-        public static boolean randomDelay=false;
+        public static boolean raabbaniSura=false;
+        public static boolean rabbaniReciter=false;
+        public static boolean rabbaniDelay=false;
         public static boolean speech=false;
-	public static String baseFolder=(new File("d:/reciter/").exists()? "d:/reciter/":TextFiles.getStartLocation());	
+	public static String baseFolder=TextFiles.getStartLocation();	
 	public static int[] ayatCount = { 
 		0, 
 		7,//1
@@ -367,9 +367,9 @@ public class ReciterModel {
 		lines.add("download_only="+(DOWNLOAD_ONLY?"1":"0"));
 		lines.add("aya_repeat_forever="+(AYA_REPEAT_FOREVER?"1":"0"));
 		lines.add("sura_repeat_forever="+(SURA_REPEAT_FOREVER?"1":"0"));
-                lines.add("random_sura="+(randomSura?"1":"0"));
-                lines.add("random_reciter="+(randomReciter?"1":"0"));
-                lines.add("random_delay="+(randomDelay?"1":"0"));
+                lines.add("random_sura="+(raabbaniSura?"1":"0"));
+                lines.add("random_reciter="+(rabbaniReciter?"1":"0"));
+                lines.add("random_delay="+(rabbaniDelay?"1":"0"));
                 lines.add("speech="+(speech?"1":"0"));
 		//DOWNLOAD_ONLY
 		//REPEAT_FOREVER
@@ -451,13 +451,13 @@ public class ReciterModel {
 						SURA_REPEAT_FOREVER=("1".equals(terms[1]));
                                                 break;
                                         case "random_sura":
-                                            randomSura=("1".equals(terms[1]));
+                                            raabbaniSura=("1".equals(terms[1]));
                                             break;
                                         case "random_reciter":
-                                            randomReciter=("1".equals(terms[1]));
+                                            rabbaniReciter=("1".equals(terms[1]));
                                             break;
                                         case "random_delay":
-                                            randomDelay=("1".equals(terms[1]));
+                                            rabbaniDelay=("1".equals(terms[1]));
                                             break;
 					default : Logging.log("can't parse ["+s+"]");
 					}
@@ -476,9 +476,9 @@ public class ReciterModel {
 				currentMode=0;
 				AYA_REPEAT_FOREVER=false;
 				DOWNLOAD_ONLY=false;
-                                randomReciter=false;
-                                randomSura=false;
-                                randomDelay=false;
+                                rabbaniReciter=false;
+                                raabbaniSura=false;
+                                rabbaniDelay=false;
                                 speech=false;
 
 
@@ -791,7 +791,7 @@ public class ReciterModel {
 				}
 			}
 			if (!SURA_CHANGE){
-				if (((currentMode==0)||(currentMode==2)||(currentMode==3))&&(!randomSura)){
+				if (((currentMode==0)||(currentMode==2)||(currentMode==3))&&(!raabbaniSura)){
 					sura+=1;
 					if (sura>114){
 						sura=1;
@@ -799,12 +799,18 @@ public class ReciterModel {
 				}else{
 					sura=rSura.nextInt(114)+1;
 				}
+                                if (rabbaniReciter){
+                                    reciter=rReciter.nextInt(mashayekh.length-1)+1;
+                                }
 				ayaStart=1;
 				ayaEnd=ayatCount[sura];
 				Logging.log("Going to next sura: "+Sura_Name[sura],1);
+                                
+                                
 			}else{
 				SURA_CHANGE=false;
 			}
+                        
 		}
 	}
 
@@ -832,8 +838,8 @@ public class ReciterModel {
                                 break;
                             case "sure":
                             case "s":
-                                randomSura=!randomSura;
-                                Logging.log("randomSura: "+(randomSura?"ON":"OFF"),1);
+                                raabbaniSura=!raabbaniSura;
+                                Logging.log("randomSura: "+(raabbaniSura?"ON":"OFF"),1);
                                 break;
                             case "delay":
                             case "wait":

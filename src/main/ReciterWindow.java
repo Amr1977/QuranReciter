@@ -127,9 +127,9 @@ public class ReciterWindow extends javax.swing.JFrame {
         public static void refreshState(){
             
             if (reciterWindow!=null){
-                randomSura.setSelected(ReciterModel.randomSura);
-                randomReciter.setSelected(ReciterModel.randomReciter);
-                randomDelay.setSelected(ReciterModel.randomDelay);
+                randomSura.setSelected(ReciterModel.raabbaniSura);
+                randomReciter.setSelected(ReciterModel.rabbaniReciter);
+                randomDelay.setSelected(ReciterModel.rabbaniDelay);
                 PAUSE.setSelected(ReciterModel.PAUSE);
             
             suraRepeatForEver.setSelected(ReciterModel.SURA_REPEAT_FOREVER);
@@ -224,6 +224,7 @@ public class ReciterWindow extends javax.swing.JFrame {
         randomSura = new javax.swing.JCheckBox();
         randomReciter = new javax.swing.JCheckBox();
         randomDelay = new javax.swing.JCheckBox();
+        rabbaniVerseRepeatCount = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Quran Reciter");
@@ -522,24 +523,43 @@ public class ReciterWindow extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setText("End");
 
-        randomSura.setText("Random Sura");
-        randomSura.setToolTipText("Next sura will be choosen at random.\nاختيار السورة التالية بقدر الله");
+        randomSura.setText("Rabbani Sura Selection");
+        randomSura.setToolTipText("اختيار السورة التالية ربانيا\nNext sura will be chosen Rabani. ");
         randomSura.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 randomSuraMouseClicked(evt);
             }
         });
 
-        randomReciter.setText("Random Reader");
-        randomReciter.setEnabled(false);
+        randomReciter.setText("Rabbani Reader Selection");
+        randomReciter.setToolTipText("القارئ للسوة التالية يتم اختياره ربانيا\nNext Sura reciter will be chosen Rabani.\n");
+        randomReciter.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                randomReciterMouseClicked(evt);
+            }
+        });
         randomReciter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 randomReciterActionPerformed(evt);
             }
         });
 
-        randomDelay.setText("Random wait between verses");
+        randomDelay.setText("Rabbani inter-verse pause");
         randomDelay.setEnabled(false);
+        randomDelay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                randomDelayActionPerformed(evt);
+            }
+        });
+
+        rabbaniVerseRepeatCount.setText("Rabbani Verse repeat count");
+        rabbaniVerseRepeatCount.setToolTipText("اختيار السورة التالية ربانيا\nNext sura will be chosen Rabani. ");
+        rabbaniVerseRepeatCount.setEnabled(false);
+        rabbaniVerseRepeatCount.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rabbaniVerseRepeatCountMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -593,7 +613,8 @@ public class ReciterWindow extends javax.swing.JFrame {
                                 .addComponent(fitWidth))
                             .addComponent(randomSura)
                             .addComponent(randomReciter)
-                            .addComponent(randomDelay)))
+                            .addComponent(randomDelay)
+                            .addComponent(rabbaniVerseRepeatCount)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -603,7 +624,7 @@ public class ReciterWindow extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 592, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -622,24 +643,26 @@ public class ReciterWindow extends javax.swing.JFrame {
                         .addComponent(fitHeight)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
-                    .addComponent(jScrollPane5)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(randomSura)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(randomReciter)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(randomDelay)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rabbaniVerseRepeatCount)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(mute)
                         .addGap(18, 18, 18)
                         .addComponent(downloadMode)
                         .addGap(18, 18, 18)
-                        .addComponent(exit)))
+                        .addComponent(exit))
+                    .addComponent(jScrollPane5))
                 .addGap(2, 2, 2)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -831,9 +854,22 @@ public class ReciterWindow extends javax.swing.JFrame {
 
     private void randomSuraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_randomSuraMouseClicked
         //ReciterModel.execute("random sura");
-        ReciterModel.randomSura=randomSura.isSelected();
+        ReciterModel.raabbaniSura=randomSura.isSelected();
         
     }//GEN-LAST:event_randomSuraMouseClicked
+
+    private void randomReciterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_randomReciterMouseClicked
+        // TODO add your handling code here:
+        ReciterModel.rabbaniReciter=randomReciter.isSelected();
+    }//GEN-LAST:event_randomReciterMouseClicked
+
+    private void rabbaniVerseRepeatCountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rabbaniVerseRepeatCountMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rabbaniVerseRepeatCountMouseClicked
+
+    private void randomDelayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_randomDelayActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_randomDelayActionPerformed
     
     
     
@@ -897,6 +933,7 @@ public class ReciterWindow extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane7;
     public static javax.swing.JList modeList;
     public static javax.swing.JToggleButton mute;
+    public static javax.swing.JCheckBox rabbaniVerseRepeatCount;
     public static javax.swing.JCheckBox randomDelay;
     public static javax.swing.JCheckBox randomReciter;
     public static javax.swing.JCheckBox randomSura;
