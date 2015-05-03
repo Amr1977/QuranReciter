@@ -7,8 +7,15 @@ import java.awt.PopupMenu;
 import java.awt.SystemTray;
 import java.awt.TrayIcon;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
+import java.nio.channels.Channels;
+import java.nio.channels.ReadableByteChannel;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -392,7 +399,7 @@ public class ReciterModel {
 			currentMode=0;
 		}else{
 			if(new File(baseFolder+"reciter-state.txt").exists()){
-				ArrayList<String> lines=TextFiles.load(baseFolder+"/reciter-state.txt");
+				ArrayList<String> lines=TextFiles.load(baseFolder+"reciter-state.txt");
 				for(String s:lines){
 					String[] terms=s.split("=");
 					if (terms.length!=2){//if invalid line skip it
@@ -536,7 +543,7 @@ public class ReciterModel {
 
 				File f=new File(filename);
 				if (f.isFile()){
-					f.deleteOnExit();
+					f.delete();
 				}
 				Logging.log(e);
 			}
@@ -552,16 +559,47 @@ public class ReciterModel {
 	public static void downloadFile(String url, String filePath) throws Exception{
 		File myFile=new File(filePath);
 		if (!myFile.exists()){
-			try{
+                    boolean success=false;
+                    int i=100;
+                    while((!success) && (i>0)){
+                        try{
+                            i--;
+                            //FileOutputStream fos=new FileOutputStream(myFile);
+                                Logging.log("Download started: "+url);
 				isDownloading=true;
-				Logging.log("Download started: "+url);
-				FileUtils.copyURLToFile(new URL(url),myFile );
+                                
+                                //FileUtils.copyURLToFile(new URL(url),myFile ,60000,60000);
+                                
+                                URLConnection conn = new URL(url).openConnection();
+                                InputStream is = conn.getInputStream();
+
+                                OutputStream outstream = new FileOutputStream(myFile);
+                                byte[] buffer = new byte[4096];
+                                int len;
+                                while ((len = is.read(buffer)) > 0) {
+                                    outstream.write(buffer, 0, len);
+                                }
+                                outstream.close();
+                                
+				
+                                //ReadableByteChannel rbc = Channels.newChannel(new URL(url).openStream());
+                                //fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
+                                //fos.close();
+				
 				Logging.log("Download Completed: "+url);
-				isDownloading=false;
+				//isDownloading=false;
+                                success=true;
 			} catch(Exception e){
+                            success=false;
+                                myFile.delete();
+                                Logging.log(e);
 				Logging.log("Error downloading/copying file: "+url);
+                                Thread.sleep(1000);
 			}
-			isDownloading=false;
+			
+                    }
+                    isDownloading=false;
+			
 		}else{
                     Logging.log("downloadFile: File already exists ["+filePath+"].");
                 }
@@ -1309,7 +1347,7 @@ public class ReciterModel {
 		Logging.log("Build: "+TextFiles.JAR_BUILD, 1);
 		Scanner input=new Scanner(System.in);
 		String command="";
-
+		Logging.log("OS Name: "+Logging.getOSName());
 
 		while(true){
 			System.out.print("<<Reciter>>");

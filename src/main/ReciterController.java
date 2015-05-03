@@ -1,42 +1,17 @@
 package main;
 
 
-import com.melloware.jintellitype.HotkeyListener;
+//import com.melloware.jintellitype.HotkeyListener;
 
 import common.GlobalHotKeys;
 import logging.Logging;
 
-public class ReciterController extends GlobalHotKeys implements Runnable,HotkeyListener{
+public class ReciterController implements Runnable{
 	ReciterController(){
-            super(GlobalHotKeys.KEY_UP_ARROW,
-            		GlobalHotKeys.KEY_DOWN_ARROW,
-            		GlobalHotKeys.KEY_RIGHT_ARROW,
-            		GlobalHotKeys.KEY_LEFT_ARROW,
-            		GlobalHotKeys.KEY_P,
-            		GlobalHotKeys.KEY_X,
-            		GlobalHotKeys.KEY_A,
-            		GlobalHotKeys.KEY_D,
-                    GlobalHotKeys.KEY_S,
-            		GlobalHotKeys.KEY_R,
-                    GlobalHotKeys.KEY_L,//download mode toggle
-            		GlobalHotKeys.KEY_0,
-            		GlobalHotKeys.KEY_1,
-            		GlobalHotKeys.KEY_2,
-            		GlobalHotKeys.KEY_3,
-            		GlobalHotKeys.KEY_PAGE_UP,
-            		GlobalHotKeys.KEY_PAGE_DOWN,
-            		GlobalHotKeys.KEY_NUM_0,
-            		GlobalHotKeys.KEY_NUM_1,
-            		GlobalHotKeys.KEY_NUM_2,
-            		GlobalHotKeys.KEY_NUM_8,
-            		GlobalHotKeys.KEY_NUM_MINUS,
-            		GlobalHotKeys.KEY_NUM_PLUS,
-            		GlobalHotKeys.KEY_PLUS,
-            		GlobalHotKeys.KEY_MINUS
-            		);
+            //start();
 		
 	}
-	@Override
+	
 	public void onHotKey(int arg0) {
 		switch(arg0){
 		case GlobalHotKeys.KEY_UP_ARROW:

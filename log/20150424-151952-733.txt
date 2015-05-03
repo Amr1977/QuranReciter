@@ -1,0 +1,29 @@
+[2015-04-24 03:19:52.733] =========================================================================
+[2015-04-24 03:19:52.880] Build: 20150424-151952-720
+[2015-04-24 03:19:52.881] Besmellah !
+[2015-04-24 03:19:52.888] OS Name: Mac OS X
+[2015-04-24 03:19:52.890] MP3s Downloaded from www.EveryAyah.com
+[2015-04-24 03:19:52.928]  
+[2015-04-24 03:19:52.932] Load: /Users/amrlotfy/Desktop/Workspace/QuranReciter//reciter-state.txt
+[2015-04-24 03:19:52.964] lines returned: 8
+[2015-04-24 03:19:52.964] skipping line [0] in /Users/amrlotfy/Desktop/Workspace/QuranReciter/reciter-state.txt
+[2015-04-24 03:19:52.964] skipping line [1] in /Users/amrlotfy/Desktop/Workspace/QuranReciter/reciter-state.txt
+[2015-04-24 03:19:52.965] skipping line [2] in /Users/amrlotfy/Desktop/Workspace/QuranReciter/reciter-state.txt
+[2015-04-24 03:19:52.971] skipping line [7] in /Users/amrlotfy/Desktop/Workspace/QuranReciter/reciter-state.txt
+[2015-04-24 03:19:52.974] skipping line [1] in /Users/amrlotfy/Desktop/Workspace/QuranReciter/reciter-state.txt
+[2015-04-24 03:19:52.976] skipping line [0] in /Users/amrlotfy/Desktop/Workspace/QuranReciter/reciter-state.txt
+[2015-04-24 03:19:52.979] skipping line [1] in /Users/amrlotfy/Desktop/Workspace/QuranReciter/reciter-state.txt
+[2015-04-24 03:19:52.992] skipping line [0] in /Users/amrlotfy/Desktop/Workspace/QuranReciter/reciter-state.txt
+[2015-04-24 03:19:52.993] Current Mode: Normal.
+[2015-04-24 03:19:52.995] sura: Al-Fatiha
+[2015-04-24 03:19:53.008] Sura repeat number 1 of 1
+[2015-04-24 03:19:53.009] Sura number 1 Al-Fatiha
+[2015-04-24 03:19:53.009] Aya number 1
+[2015-04-24 03:19:53.028] wait: [1000] ms.
+[2015-04-24 03:19:53.778] ayaList.getSelectedIndex():0
+[2015-04-24 03:19:53.778] Start Location:/Users/amrlotfy/Desktop/Workspace/QuranReciter/
+[2015-04-24 03:19:53.779] Download started: https://googledrive.com/host/0B20GSmZRgPGCfmwxbnJjckFYVDFnWUgwMXhiTklZSmlDYXZrZ1pkLVhyYmI0UjE4MHJ6RVU/1_1.png
+[2015-04-24 03:19:57.593] Download Completed: https://googledrive.com/host/0B20GSmZRgPGCfmwxbnJjckFYVDFnWUgwMXhiTklZSmlDYXZrZ1pkLVhyYmI0UjE4MHJ6RVU/1_1.png
+[2015-04-24 03:19:57.594] getAyaimage: /Users/amrlotfy/Desktop/Workspace/QuranReciter//images/1_1.png
+[2015-04-24 02:44:44.833] ShutdownHook: saving state...
+[2015-04-24 02:44:44.834] states saved.

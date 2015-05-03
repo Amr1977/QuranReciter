@@ -1,0 +1,75 @@
+[2015-04-25 12:43:53.243] =========================================================================
+[2015-04-25 12:43:53.351] Besmellah !
+[2015-04-25 12:43:53.351] MP3s Downloaded from www.EveryAyah.com
+[2015-04-25 12:43:53.353]  
+[2015-04-25 12:43:53.355] Load: /Users/amrlotfy/Desktop/Workspace/QuranReciter/reciter-state.txt
+[2015-04-25 12:43:53.350] Build: 20150425-124353-225
+[2015-04-25 12:43:53.372] lines returned: 18
+[2015-04-25 12:43:53.408] java.runtime.name=Java(TM) SE Runtime Environment
+[2015-04-25 12:43:53.445] sun.boot.library.path=/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home/jre/lib
+[2015-04-25 12:43:53.446] java.vm.version=25.45-b02
+[2015-04-25 12:43:53.446] user.country.format=EG
+[2015-04-25 12:43:53.446] gopherProxySet=false
+[2015-04-25 12:43:53.446] java.vm.vendor=Oracle Corporation
+[2015-04-25 12:43:53.447] java.vendor.url=http://java.oracle.com/
+[2015-04-25 12:43:53.447] path.separator=:
+[2015-04-25 12:43:53.447] java.vm.name=Java HotSpot(TM) 64-Bit Server VM
+[2015-04-25 12:43:53.447] file.encoding.pkg=sun.io
+[2015-04-25 12:43:53.447] user.country=US
+[2015-04-25 12:43:53.448] sun.java.launcher=SUN_STANDARD
+[2015-04-25 12:43:53.448] sun.os.patch.level=unknown
+[2015-04-25 12:43:53.448] java.vm.specification.name=Java Virtual Machine Specification
+[2015-04-25 12:43:53.448] user.dir=/Users/amrlotfy/Desktop/Workspace/QuranReciter
+[2015-04-25 12:43:53.448] java.runtime.version=1.8.0_45-b14
+[2015-04-25 12:43:53.449] java.awt.graphicsenv=sun.awt.CGraphicsEnvironment
+[2015-04-25 12:43:53.449] java.endorsed.dirs=/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home/jre/lib/endorsed
+[2015-04-25 12:43:53.449] os.arch=x86_64
+[2015-04-25 12:43:53.449] java.io.tmpdir=/var/folders/d9/xdt1hb1j79q9v8gpf8wrbrn00000gr/T/
+[2015-04-25 12:43:53.449] line.separator=
+
+[2015-04-25 12:43:53.450] java.vm.specification.vendor=Oracle Corporation
+[2015-04-25 12:43:53.450] os.name=Mac OS X
+[2015-04-25 12:43:53.450] sun.jnu.encoding=UTF-8
+[2015-04-25 12:43:53.450] java.library.path=/Applications/NetBeans/NetBeans 8.0.2.app/Contents/Resources/NetBeans/webcommon/bin::/Users/amrlotfy/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.
+[2015-04-25 12:43:53.450] sun.awt.enableExtraMouseButtons=true
+[2015-04-25 12:43:53.451] java.specification.name=Java Platform API Specification
+[2015-04-25 12:43:53.451] java.class.version=52.0
+[2015-04-25 12:43:53.451] sun.management.compiler=HotSpot 64-Bit Tiered Compilers
+[2015-04-25 12:43:53.451] os.version=10.10.2
+[2015-04-25 12:43:53.451] http.nonProxyHosts=local|*.local|169.254/16|*.169.254/16
+[2015-04-25 12:43:53.452] user.home=/Users/amrlotfy
+[2015-04-25 12:43:53.452] user.timezone=Africa/Cairo
+[2015-04-25 12:43:53.452] java.awt.printerjob=sun.lwawt.macosx.CPrinterJob
+[2015-04-25 12:43:53.452] file.encoding=UTF-8
+[2015-04-25 12:43:53.452] java.specification.version=1.8
+[2015-04-25 12:43:53.453] java.class.path=/Users/amrlotfy/Desktop/Workspace/QuranReciter/basicplayer3.0.jar:/Users/amrlotfy/Desktop/Workspace/QuranReciter/commons-io-2.4-javadoc.jar:/Users/amrlotfy/Desktop/Workspace/QuranReciter/commons-io-2.4-sources.jar:/Users/amrlotfy/Desktop/Workspace/QuranReciter/commons-io-2.4-test-sources.jar:/Users/amrlotfy/Desktop/Workspace/QuranReciter/commons-io-2.4-tests.jar:/Users/amrlotfy/Desktop/Workspace/QuranReciter/commons-io-2.4.jar:/Users/amrlotfy/Desktop/Workspace/QuranReciter/commons-logging-api.jar:/Users/amrlotfy/Desktop/Workspace/QuranReciter/jfxrt.jar:/Users/amrlotfy/Desktop/Workspace/QuranReciter/jl1.0.jar:/Users/amrlotfy/Desktop/Workspace/QuranReciter/jna-4.1.0.jar:/Users/amrlotfy/Desktop/Workspace/QuranReciter/jogg-0.0.7.jar:/Users/amrlotfy/Desktop/Workspace/QuranReciter/jorbis-0.0.15.jar:/Users/amrlotfy/Desktop/Workspace/QuranReciter/jspeex0.9.7.jar:/Users/amrlotfy/Desktop/Workspace/QuranReciter/mp3spi1.9.4.jar:/Users/amrlotfy/Desktop/Workspace/QuranReciter/platform-3.5.1.jar:/Users/amrlotfy/Desktop/Workspace/QuranReciter/tritonus_share.jar:/Users/amrlotfy/Desktop/Workspace/QuranReciter/vorbisspi1.0.2.jar:/Users/amrlotfy/Desktop/Workspace/commons/freetts.jar:/Users/amrlotfy/Desktop/Workspace/commons/build/classes:/Users/amrlotfy/Desktop/Workspace/sound/build/classes:/Users/amrlotfy/Desktop/Workspace/commons/freetts-jsapi10.jar:/Users/amrlotfy/Desktop/Workspace/commons/mbrola.jar:/Users/amrlotfy/Desktop/Workspace/QuranReciter/jgraphx.jar:/Users/amrlotfy/Desktop/Workspace/commons/jintellitype-1.3.9.jar:/Users/amrlotfy/Desktop/Workspace/QuranReciter/build/classes
+[2015-04-25 12:43:53.453] user.name=amrlotfy
+[2015-04-25 12:43:53.453] java.vm.specification.version=1.8
+[2015-04-25 12:43:53.453] sun.java.command=main.ReciterWindow
+[2015-04-25 12:43:53.454] java.home=/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home/jre
+[2015-04-25 12:43:53.454] sun.arch.data.model=64
+[2015-04-25 12:43:53.454] user.language=en
+[2015-04-25 12:43:53.454] java.specification.vendor=Oracle Corporation
+[2015-04-25 12:43:53.455] awt.toolkit=sun.lwawt.macosx.LWCToolkit
+[2015-04-25 12:43:53.455] java.vm.info=mixed mode
+[2015-04-25 12:43:53.456] Exception occured, Stack trace: 0
+[2015-04-25 12:43:53.456] Exception occured, Stack trace: java.lang.ArrayIndexOutOfBoundsException: 00
+[2015-04-25 12:43:53.457] main.ReciterModel.restoreState(ReciterModel.java:414)
+[2015-04-25 12:43:53.457] main.ReciterModel.simpleReader(ReciterModel.java:701)
+[2015-04-25 12:43:53.458] main.Reader.run(Reader.java:11)
+[2015-04-25 12:43:53.458] java.lang.Thread.run(Thread.java:745)
+[2015-04-25 12:43:53.460] java.version=1.8.0_45
+[2015-04-25 12:43:53.464] java.ext.dirs=/Users/amrlotfy/Library/Java/Extensions:/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home/jre/lib/ext:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java
+[2015-04-25 12:43:53.473] sun.boot.class.path=/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home/jre/classes
+[2015-04-25 12:43:53.476] java.vendor=Oracle Corporation
+[2015-04-25 12:43:53.477] file.separator=/
+[2015-04-25 12:43:53.477] java.vendor.url.bug=http://bugreport.sun.com/bugreport/
+[2015-04-25 12:43:53.477] sun.font.fontmanager=sun.font.CFontManager
+[2015-04-25 12:43:53.478] sun.io.unicode.encoding=UnicodeBig
+[2015-04-25 12:43:53.478] sun.cpu.endian=little
+[2015-04-25 12:43:53.479] socksNonProxyHosts=local|*.local|169.254/16|*.169.254/16
+[2015-04-25 12:43:53.479] ftp.nonProxyHosts=local|*.local|169.254/16|*.169.254/16
+[2015-04-25 12:43:53.479] sun.cpu.isalist=
+[2015-04-25 12:43:53.483] OS Name: Mac OS X
+[2015-04-25 12:43:59.867] ShutdownHook: saving state...
+[2015-04-25 12:43:59.868] states saved.

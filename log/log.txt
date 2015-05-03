@@ -1,0 +1,15 @@
+[2015-04-24 06:48:40.906] Load: /Users/amrlotfy/Desktop/Workspace/QuranReciter//readers.txt
+[2015-04-24 06:48:40.907] file not exist: /Users/amrlotfy/Desktop/Workspace/QuranReciter//readers.txt
+[2015-04-24 06:48:40.907] lines returned: 0
+[2015-04-24 06:50:01.065] Load: /Users/amrlotfy/Desktop/Workspace/QuranReciter//readers.txt
+[2015-04-24 06:50:01.068] file not exist: /Users/amrlotfy/Desktop/Workspace/QuranReciter//readers.txt
+[2015-04-24 06:50:01.068] lines returned: 0
+[2015-04-24 06:51:44.113] Load: /Users/amrlotfy/Desktop/Workspace/QuranReciter//readers.txt
+[2015-04-24 06:51:44.127] file not exist: /Users/amrlotfy/Desktop/Workspace/QuranReciter//readers.txt
+[2015-04-24 06:51:44.127] lines returned: 0
+[2015-04-24 06:53:16.069] Load: /Users/amrlotfy/Desktop/Workspace/QuranReciter//readers.txt
+[2015-04-24 06:53:16.075] file not exist: /Users/amrlotfy/Desktop/Workspace/QuranReciter//readers.txt
+[2015-04-24 06:53:16.076] lines returned: 0
+[2015-04-25 12:43:53.225] Load: /Users/amrlotfy/Desktop/Workspace/QuranReciter//readers.txt
+[2015-04-25 12:43:53.241] file not exist: /Users/amrlotfy/Desktop/Workspace/QuranReciter//readers.txt
+[2015-04-25 12:43:53.241] lines returned: 0

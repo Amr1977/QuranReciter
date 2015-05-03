@@ -10,7 +10,8 @@ public class Reader implements Runnable{
 		try {
 			ReciterModel.simpleReader();
 		} catch (Exception e) {
-			e.printStackTrace();
+                    Logging.log(e);
+                    e.printStackTrace();
 		}
 	}
 	
@@ -19,8 +20,9 @@ public class Reader implements Runnable{
 		Logging.log("Besmellah !",1);
 		Logging.log("Verses Downloaded from  www.EveryAyah.com",1);
 		Logging.log("Build: "+TextFiles.getBuildDate());
-		Thread t=new Thread(new Reader(), "Quran Reader Thread");
-		t.start();
+                ReciterModel.shell();
+		//Thread t=new Thread(new Reader(), "Quran Reader Thread");
+		//t.start();
 	}
 	public static void test(String[] args){
 		

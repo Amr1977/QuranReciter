@@ -1,0 +1,10 @@
+[2015-04-24 06:51:44.130] =========================================================================
+[2015-04-24 06:51:44.250] Build: 20150424-185144-112
+[2015-04-24 06:51:44.253] Besmellah !
+[2015-04-24 06:51:44.254] MP3s Downloaded from www.EveryAyah.com
+[2015-04-24 06:51:44.258] OS Name: Mac OS X
+[2015-04-24 06:51:44.274]  
+[2015-04-24 06:51:44.284] Load: /Users/amrlotfy/Desktop/Workspace/QuranReciter/reciter-state.txt
+[2015-04-24 06:51:44.382] lines returned: 18
+[2015-04-24 06:53:01.372] ShutdownHook: saving state...
+[2015-04-24 06:53:01.374] states saved.
