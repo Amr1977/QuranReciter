@@ -1,0 +1,33 @@
+[2015-05-22 09:40:03.840] =========================================================================
+[2015-05-22 09:40:04.105] Build: 
+[2015-05-22 09:40:04.109] OS Name: 
+[2015-05-22 09:40:04.111] Besmellah !
+[2015-05-22 09:40:04.111] MP3s Downloaded from www.EveryAyah.com
+[2015-05-22 09:40:04.111]  
+[2015-05-22 09:40:04.113] Load: D:\workspace\QuranReciter-source\QuranReciter\/reciter-state.txt
+[2015-05-22 09:40:04.113] lines returned: 8
+[2015-05-22 09:40:04.114] skipping line [0] in D:\workspace\QuranReciter-source\QuranReciter\reciter-state.txt
+[2015-05-22 09:40:04.114] skipping line [1] in D:\workspace\QuranReciter-source\QuranReciter\reciter-state.txt
+[2015-05-22 09:40:04.114] skipping line [2] in D:\workspace\QuranReciter-source\QuranReciter\reciter-state.txt
+[2015-05-22 09:40:04.114] skipping line [7] in D:\workspace\QuranReciter-source\QuranReciter\reciter-state.txt
+[2015-05-22 09:40:04.115] skipping line [1] in D:\workspace\QuranReciter-source\QuranReciter\reciter-state.txt
+[2015-05-22 09:40:04.115] skipping line [0] in D:\workspace\QuranReciter-source\QuranReciter\reciter-state.txt
+[2015-05-22 09:40:04.357] skipping line [1] in D:\workspace\QuranReciter-source\QuranReciter\reciter-state.txt
+[2015-05-22 09:40:04.358] skipping line [0] in D:\workspace\QuranReciter-source\QuranReciter\reciter-state.txt
+[2015-05-22 09:40:04.360] Current Mode: Normal.
+[2015-05-22 09:40:04.360] sura: Al-Fatiha
+[2015-05-22 09:40:04.361] Sura repeat number 1 of 1
+[2015-05-22 09:40:04.390] Sura number 1 Al-Fatiha
+[2015-05-22 09:40:04.391] Aya number 1
+[2015-05-22 09:40:04.391] wait: [1000] ms.
+[2015-05-22 09:40:05.579] reciter: #[0] Abdul_Basit_Mujawwad_128kbps, aya repeat : 1/1
+[2015-05-22 09:40:06.529] Download started: http://www.everyayah.com/data/Abdul_Basit_Mujawwad_128kbps/001001.mp3
+[2015-05-22 09:40:11.025] Download Completed: http://www.everyayah.com/data/Abdul_Basit_Mujawwad_128kbps/001001.mp3
+[2015-05-22 09:40:11.174] D:\workspace\QuranReciter-source\QuranReciter\mp3/Abdul_Basit_Mujawwad_128kbps/001/001001.mp3
+[2015-05-22 09:40:12.001] Timer started: Abdul_Basit_Mujawwad_128kbps/001
+[2015-05-22 09:40:18.857] Exiting ... 
+
+[2015-05-22 09:40:19.459] Aya number 2
+[2015-05-22 09:40:19.461] ShutdownHook: saving state...
+[2015-05-22 09:40:19.462] states saved.
+[2015-05-22 09:40:19.461] ShutdownHook: cleanup...

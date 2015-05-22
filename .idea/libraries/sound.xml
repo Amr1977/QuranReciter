@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="sound">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../sound/jfxrt.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../sound/basicplayer3.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

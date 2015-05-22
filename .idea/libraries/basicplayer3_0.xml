@@ -1,0 +1,42 @@
+<component name="libraryTable">
+  <library name="basicplayer3.0">
+    <CLASSES>
+      <root url="jar://D:/reciter/lib/basicplayer3.0.jar!/" />
+      <root url="jar://D:/reciter/lib/Client.jar!/" />
+      <root url="jar://D:/reciter/lib/cmu_time_awb.jar!/" />
+      <root url="jar://D:/reciter/lib/cmu_us_kal.jar!/" />
+      <root url="jar://D:/reciter/lib/commons-io-2.4-tests.jar!/" />
+      <root url="jar://D:/reciter/lib/commons-io-2.4.jar!/" />
+      <root url="jar://D:/reciter/lib/commons-logging-api.jar!/" />
+      <root url="jar://D:/reciter/lib/en_us.jar!/" />
+      <root url="jar://D:/reciter/lib/freetts-jsapi10.jar!/" />
+      <root url="jar://D:/reciter/lib/freetts.jar!/" />
+      <root url="jar://D:/reciter/lib/jfxrt.jar!/" />
+      <root url="jar://D:/reciter/lib/jgraphx.jar!/" />
+      <root url="jar://D:/reciter/lib/jintellitype-1.3.9.jar!/" />
+      <root url="jar://D:/reciter/lib/jl1.0.jar!/" />
+      <root url="jar://D:/reciter/lib/jna-4.1.0.jar!/" />
+      <root url="jar://D:/reciter/lib/jogg-0.0.7.jar!/" />
+      <root url="jar://D:/reciter/lib/jorbis-0.0.15.jar!/" />
+      <root url="jar://D:/reciter/lib/jsapi.jar!/" />
+      <root url="jar://D:/reciter/lib/jspeex0.9.7.jar!/" />
+      <root url="jar://D:/reciter/lib/mbrola.jar!/" />
+      <root url="jar://D:/reciter/lib/mp3spi1.9.4.jar!/" />
+      <root url="jar://D:/reciter/lib/platform-3.5.1.jar!/" />
+      <root url="jar://D:/reciter/lib/Player.jar!/" />
+      <root url="jar://D:/reciter/lib/Server.jar!/" />
+      <root url="jar://D:/reciter/lib/sound.jar!/" />
+      <root url="jar://D:/reciter/lib/tritonus_share.jar!/" />
+      <root url="jar://D:/reciter/lib/vorbisspi1.0.2.jar!/" />
+      <root url="jar://D:/reciter/lib/cmulex.jar!/" />
+      <root url="jar://D:/reciter/lib/cmutimelex.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://D:/reciter/lib/commons-io-2.4-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://D:/reciter/lib/commons-io-2.4-sources.jar!/" />
+      <root url="jar://D:/reciter/lib/commons-io-2.4-test-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

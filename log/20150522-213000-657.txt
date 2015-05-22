@@ -1,0 +1,22 @@
+[2015-05-22 09:30:00.657] =========================================================================
+[2015-05-22 09:30:00.732] Besmellah !
+[2015-05-22 09:30:00.733] MP3s Downloaded from www.EveryAyah.com
+[2015-05-22 09:30:00.733]  
+[2015-05-22 09:30:00.735] Load: D:\workspace\QuranReciter-source\QuranReciter\/reciter-state.txt
+[2015-05-22 09:30:00.737] lines returned: 8
+[2015-05-22 09:30:00.738] skipping line [0] in D:\workspace\QuranReciter-source\QuranReciter\reciter-state.txt
+[2015-05-22 09:30:00.738] skipping line [1] in D:\workspace\QuranReciter-source\QuranReciter\reciter-state.txt
+[2015-05-22 09:30:00.739] skipping line [2] in D:\workspace\QuranReciter-source\QuranReciter\reciter-state.txt
+[2015-05-22 09:30:00.739] skipping line [7] in D:\workspace\QuranReciter-source\QuranReciter\reciter-state.txt
+[2015-05-22 09:30:00.740] skipping line [1] in D:\workspace\QuranReciter-source\QuranReciter\reciter-state.txt
+[2015-05-22 09:30:00.740] skipping line [0] in D:\workspace\QuranReciter-source\QuranReciter\reciter-state.txt
+[2015-05-22 09:30:00.741] skipping line [1] in D:\workspace\QuranReciter-source\QuranReciter\reciter-state.txt
+[2015-05-22 09:30:00.742] skipping line [0] in D:\workspace\QuranReciter-source\QuranReciter\reciter-state.txt
+[2015-05-22 09:30:00.742] Current Mode: Normal.
+[2015-05-22 09:30:00.743] sura: Al-Fatiha
+[2015-05-22 09:30:00.743] Sura repeat number 1 of 1
+[2015-05-22 09:30:00.744] Sura number 1 Al-Fatiha
+[2015-05-22 09:30:00.744] Aya number 1
+[2015-05-22 09:30:00.745] wait: [1000] ms.
+[2015-05-22 09:30:00.853] Build: 
+[2015-05-22 09:30:00.873] OS Name: 

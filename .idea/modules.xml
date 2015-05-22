@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../../FreeTTS/FreeTTS.iml" filepath="$PROJECT_DIR$/../../FreeTTS/FreeTTS.iml" />
+      <module fileurl="file://$PROJECT_DIR$/QuranReciter.iml" filepath="$PROJECT_DIR$/QuranReciter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../commons/commons.iml" filepath="$PROJECT_DIR$/../../commons/commons.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../sound/sound.iml" filepath="$PROJECT_DIR$/../../sound/sound.iml" />
+    </modules>
+  </component>
+</project>
