@@ -85,23 +85,23 @@ public class ReciterWindow extends javax.swing.JFrame {
                             Logging.log("imageHeight:"+imageHeight+", imageWidth:"+imageWidth+", labelHeight: "+labelHeight+", labelWidth:"+labelWidth);
                             newWidth=labelWidth;
                             newHeight=Math.round((imageHeight*newWidth)/imageWidth);
-                            Logging.log("newWidth: "+newWidth+", newHeight: "+newHeight);
+                            //Logging.log("newWidth: "+newWidth+", newHeight: "+newHeight);
                         }
                         
                         if (newHeight>labelHeight){
                             newHeight=labelHeight;
                             newWidth=Math.round((imageWidth*newHeight)/imageHeight);
-                            Logging.log("newWidth: "+newWidth+", newHeight: "+newHeight);
+                            //Logging.log("newWidth: "+newWidth+", newHeight: "+newHeight);
                         }
                         break;
                         
                         //fit width
                     case 2:
                         if (imageWidth>labelWidth){
-                            Logging.log("imageHeight:"+imageHeight+", imageWidth:"+imageWidth+", labelHeight: "+labelHeight+", labelWidth:"+labelWidth);
+                            //Logging.log("imageHeight:"+imageHeight+", imageWidth:"+imageWidth+", labelHeight: "+labelHeight+", labelWidth:"+labelWidth);
                             newWidth=labelWidth;
                             newHeight=Math.round((imageHeight*newWidth)/imageWidth);
-                            Logging.log("newWidth: "+newWidth+", newHeight: "+newHeight);
+                            //Logging.log("newWidth: "+newWidth+", newHeight: "+newHeight);
                         }
                         
                         
@@ -109,10 +109,10 @@ public class ReciterWindow extends javax.swing.JFrame {
                         
                     case 1:
                         if (imageHeight>labelHeight){
-                            Logging.log("imageHeight:"+imageHeight+", imageWidth:"+imageWidth+", labelHeight: "+labelHeight+", labelWidth:"+labelWidth);
+                           // Logging.log("imageHeight:"+imageHeight+", imageWidth:"+imageWidth+", labelHeight: "+labelHeight+", labelWidth:"+labelWidth);
                             newHeight=labelHeight;
                             newWidth=Math.round((imageWidth*newHeight)/imageHeight);
-                            Logging.log("newWidth: "+newWidth+", newHeight: "+newHeight);
+                           // Logging.log("newWidth: "+newWidth+", newHeight: "+newHeight);
                         
                         }
                        break;
