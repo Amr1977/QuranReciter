@@ -173,7 +173,7 @@ public class ReciterModel {
 	public static String[] mashayekh;
 
 	static {
-		mashayekh = arrayListToArray(TextFiles.load(baseFolder + "/readers.txt"));
+		mashayekh = arrayListToArray(TextFiles.load(baseFolder + "readers.txt"));
 		//handle if file not found
 		if (mashayekh==null || mashayekh.length==0){
 			ArrayList<String> defaultRecitersArrayList=new ArrayList<String>();
@@ -409,7 +409,7 @@ public class ReciterModel {
 			currentMode=0;
 		}else{
 			if(new File(baseFolder+"reciter-state.txt").exists()){
-				ArrayList<String> lines=TextFiles.load(baseFolder+"/reciter-state.txt");
+				ArrayList<String> lines=TextFiles.load(baseFolder+"reciter-state.txt");
 				for(String s:lines){
 					String[] terms=s.split("=");
 					if (terms.length!=2){//if invalid line skip it
@@ -536,7 +536,7 @@ public class ReciterModel {
 		}
 		for (int aya=startAya;aya<=endAya;aya++){
 			String foldername=baseFolder+"mp3/"+mashayekh[sheikhID]+"/"+leadingZeros(sura,3);
-			String filename=baseFolder+"/mp3/"+mashayekh[sheikhID]+"/"+leadingZeros(sura,3)+"/"+leadingZeros(sura,3)+leadingZeros(aya,3)+".mp3";
+			String filename=baseFolder+"mp3/"+mashayekh[sheikhID]+"/"+leadingZeros(sura,3)+"/"+leadingZeros(sura,3)+leadingZeros(aya,3)+".mp3";
 			String fileUrl="http://www.everyayah.com/data/"+mashayekh[sheikhID]+"/"+leadingZeros(sura,3)+leadingZeros(aya,3)+".mp3";
 			try{
 				new File(foldername).mkdirs();
@@ -627,8 +627,8 @@ public class ReciterModel {
 			}
 		});
 
-		new File(baseFolder+"/log").mkdirs();
-		Logging.setLogFile(baseFolder+"/log/"+Logging.getTimeStamp()+".txt");
+		new File(baseFolder+"log").mkdirs();
+		Logging.setLogFile(baseFolder+"log/"+Logging.getTimeStamp()+".txt");
 		Logging.log("=========================================================================");
 		Logging.log("Besmellah !",1);
 		Logging.log("MP3s Downloaded from www.EveryAyah.com",1);
@@ -696,7 +696,7 @@ public class ReciterModel {
 					}
 					if (showImages){
 						try {
-							BaseTest.executer("cmd", "/c start /max "+baseFolder+"/images/"+sura+"_"+currentAya+".png");
+							BaseTest.executer("cmd", "/c start /max "+baseFolder+"images/"+sura+"_"+currentAya+".png");
 						} catch (IOException e) {
 							Logging.log(e);
 						}

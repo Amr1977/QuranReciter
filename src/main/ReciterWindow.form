@@ -39,20 +39,20 @@
                           <Component id="jScrollPane1" alignment="0" min="-2" pref="219" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="PAUSE" min="-2" pref="65" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="suraRepeatForEver" min="-2" pref="43" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="suraRepeatForEver" min="-2" pref="53" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                               <Component id="suraRepeat" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jScrollPane2" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="ayaRepeatForEver" min="-2" pref="39" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="ayaRepeat" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="ayaRepeatForEver" pref="0" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="ayaRepeat" min="-2" pref="73" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="jScrollPane2" min="-2" pref="134" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -104,7 +104,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-              <Component id="jScrollPane4" pref="574" max="32767" attributes="0"/>
+              <Component id="jScrollPane4" pref="540" max="32767" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -162,10 +162,16 @@
           <Font name="Tahoma" size="36" style="1"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/main/pause-small.png"/>
+          <Image iconType="3" name="/main/play.png"/>
         </Property>
         <Property name="mnemonic" type="int" value="80"/>
         <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;&#xa;Pause reading (after aya complete) &lt;br&gt;&#xa;key shortcut: Ctrl+Alt+P"/>
+        <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/main/pause.png"/>
+        </Property>
+        <Property name="selectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/main/pause.png"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="PAUSEMouseClicked"/>
@@ -181,7 +187,7 @@
           <Font name="Tahoma" size="36" style="1"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/main/Progress-small.png"/>
+          <Image iconType="3" name="/main/loop.png_0.06_png.png"/>
         </Property>
         <Property name="mnemonic" type="int" value="82"/>
         <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;&#xa;Endless Repeat current aya&lt;br&gt;&#xa;&#x62a;&#x643;&#x631;&#x627;&#x631; &#x627;&#x644;&#x622;&#x64a;&#x629; &#x644;&#x627;&#x646;&#x647;&#x627;&#x626;&#x64a; &lt;br&gt;&#xa;Ctrl+Alt+R"/>
@@ -388,7 +394,7 @@
           <Font name="Tahoma" size="36" style="1"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/main/Progress-small.png"/>
+          <Image iconType="3" name="/main/loop.png_0.06_png.png"/>
         </Property>
         <Property name="mnemonic" type="int" value="82"/>
         <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;&#xa;Endless Repeat current sura &lt;br&gt;&#xa;&#x62a;&#x643;&#x631;&#x627;&#x631; &#x627;&#x644;&#x633;&#x648;&#x631;&#x629; &#x644;&#x627;&#x646;&#x647;&#x627;&#x626;&#x64a; &lt;br&gt;&#xa;key shortcut:  Ctrl+Alt+S"/>

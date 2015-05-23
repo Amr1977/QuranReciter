@@ -164,7 +164,7 @@ public class ReciterWindow extends javax.swing.JFrame {
         reciterWindow=this;
         initComponents();
         ReciterController.start();
-        
+        FreeTTS.MUTE=true;
         fitWidth.setSelected(true);
         while(!ReciterModel.RESTORED_STATE){
             try {
@@ -234,9 +234,11 @@ public class ReciterWindow extends javax.swing.JFrame {
         setForeground(new java.awt.Color(0, 0, 0));
 
         PAUSE.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        PAUSE.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/pause-small.png"))); // NOI18N
+        PAUSE.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/play.png"))); // NOI18N
         PAUSE.setMnemonic('P');
         PAUSE.setToolTipText("<html>\nPause reading (after aya complete) <br>\nkey shortcut: Ctrl+Alt+P");
+        PAUSE.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/main/pause.png"))); // NOI18N
+        PAUSE.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/main/pause.png"))); // NOI18N
         PAUSE.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 PAUSEMouseClicked(evt);
@@ -247,7 +249,7 @@ public class ReciterWindow extends javax.swing.JFrame {
         });
 
         ayaRepeatForEver.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        ayaRepeatForEver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/Progress-small.png"))); // NOI18N
+        ayaRepeatForEver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/loop.png_0.06_png.png"))); // NOI18N
         ayaRepeatForEver.setMnemonic('R');
         ayaRepeatForEver.setToolTipText("<html>\nEndless Repeat current aya<br>\nتكرار الآية لانهائي <br>\nCtrl+Alt+R");
         ayaRepeatForEver.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -374,7 +376,7 @@ public class ReciterWindow extends javax.swing.JFrame {
         });
 
         suraRepeatForEver.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        suraRepeatForEver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/Progress-small.png"))); // NOI18N
+        suraRepeatForEver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/loop.png_0.06_png.png"))); // NOI18N
         suraRepeatForEver.setMnemonic('R');
         suraRepeatForEver.setToolTipText("<html>\nEndless Repeat current sura <br>\nتكرار السورة لانهائي <br>\nkey shortcut:  Ctrl+Alt+S");
         suraRepeatForEver.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -577,17 +579,17 @@ public class ReciterWindow extends javax.swing.JFrame {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(PAUSE, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(suraRepeatForEver, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(40, 40, 40)
+                                .addGap(18, 18, 18)
+                                .addComponent(suraRepeatForEver, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
                                 .addComponent(suraRepeat)))
-                        .addGap(30, 30, 30)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(ayaRepeatForEver, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(ayaRepeat)))
+                                .addComponent(ayaRepeatForEver, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ayaRepeat, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -627,7 +629,7 @@ public class ReciterWindow extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -678,6 +680,7 @@ public class ReciterWindow extends javax.swing.JFrame {
     private void PAUSEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PAUSEMouseClicked
         // TODO add your handling code here:
         ReciterModel.execute("pause");
+        
     }//GEN-LAST:event_PAUSEMouseClicked
 
     private void ayaRepeatForEverStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_ayaRepeatForEverStateChanged
