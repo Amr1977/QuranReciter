@@ -1,5 +1,6 @@
 package main;
 
+import common.Downloads;
 import common.Sound;
 import static common.Sound.getMediaPlayer;
 import java.awt.Image;
@@ -314,7 +315,7 @@ public class ReciterModel {
 	};
 
 
-
+        public static Integer downloadQueueMaxSize = 3;
 	public static boolean isDownloading=false;
 	public static boolean SURA_REPEAT_FOREVER=false;
 	public TreeMap<String, String> config = new TreeMap<String, String>(String.CASE_INSENSITIVE_ORDER);
@@ -535,8 +536,8 @@ public class ReciterModel {
 			startAya=1;
 		}
 		for (int aya=startAya;aya<=endAya;aya++){
-			String foldername=baseFolder+"mp3/"+mashayekh[sheikhID]+"/"+leadingZeros(sura,3);
-			String filename=baseFolder+"mp3/"+mashayekh[sheikhID]+"/"+leadingZeros(sura,3)+"/"+leadingZeros(sura,3)+leadingZeros(aya,3)+".mp3";
+			String foldername=baseFolder+"mp3"+File.separator+mashayekh[sheikhID]+File.separator+leadingZeros(sura,3);
+			String filename=baseFolder+"mp3"+File.separator+mashayekh[sheikhID]+File.separator+leadingZeros(sura,3)+File.separator+leadingZeros(sura,3)+leadingZeros(aya,3)+".mp3";
 			String fileUrl="http://www.everyayah.com/data/"+mashayekh[sheikhID]+"/"+leadingZeros(sura,3)+leadingZeros(aya,3)+".mp3";
 			try{
 				new File(foldername).mkdirs();
@@ -547,7 +548,7 @@ public class ReciterModel {
 			}
 
 			try {
-				downloadFile(fileUrl,filename);
+				Downloads.add(fileUrl,filename);
 			} catch (Exception e) {
 				// TODO what if Internet not available
 
@@ -566,14 +567,14 @@ public class ReciterModel {
 	 * @param filePath full destination file name to save.
 	 * @throws Exception 
 	 */
-	public static void downloadFile(String url, String filePath) throws Exception{
+	public static void downloadFileZ(String url, String filePath) throws Exception{
 		File myFile=new File(filePath);
 		if (!myFile.exists()){
 			try{
 				isDownloading=true;
-				Logging.log("Download started: "+url);
+				Logging.log("Download start: "+url);
 				FileUtils.copyURLToFile(new URL(url),myFile );
-				Logging.log("Download Completed: "+url);
+				Logging.log("Download ended: "+url);
 				isDownloading=false;
 			} catch(Exception e){
 				Logging.log("Error downloading/copying file: "+url);
@@ -596,10 +597,28 @@ public class ReciterModel {
 
 	
 	public static  void readAya(int sheik, int sura, int aya){
-		downloadAyat(sheik,sura,aya,aya);
+            for(int i=0;i<downloadQueueMaxSize;i++){
+                if ((aya+i)<ayatCount[sura]){
+                    downloadAyat(sheik,sura,aya+i,aya+i);
+                }else{
+                    int newAya=(aya+i)-ayatCount[sura];
+                    int newSura=(sura+1) < 114 ? (sura+1) : 1 ;
+                    downloadAyat(sheik,newSura,newAya,newAya);
+                }
+                    
+                
+            }
+		
 		if (!DOWNLOAD_ONLY){
 			try {
-				playMp3(baseFolder+"mp3/"+mashayekh[sheik]+"/"+leadingZeros(sura,3)+"/"+leadingZeros(sura,3)+leadingZeros(aya,3)+".mp3");
+                            String fileName=baseFolder+"mp3"+File.separator+mashayekh[sheik]+File.separator+leadingZeros(sura,3)+File.separator+leadingZeros(sura,3)+leadingZeros(aya,3)+".mp3";
+                            Logging.log("Waiting for file to Download: "+fileName);
+                            while(Downloads.isInQueue(fileName)){
+                                Thread.sleep(100);
+                            }
+                            Logging.log("Waiting completed: "+fileName);
+                            playMp3(fileName);
+                            saveState();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				Logging.log(e);
@@ -628,7 +647,7 @@ public class ReciterModel {
 		});
 
 		new File(baseFolder+"log").mkdirs();
-		Logging.setLogFile(baseFolder+"log/"+Logging.getTimeStamp()+".txt");
+		Logging.setLogFile(baseFolder+"log"+File.separator+Logging.getTimeStamp()+".txt");
 		Logging.log("=========================================================================");
 		Logging.log("Besmellah !",1);
 		Logging.log("MP3s Downloaded from www.EveryAyah.com",1);
@@ -696,7 +715,7 @@ public class ReciterModel {
 					}
 					if (showImages){
 						try {
-							BaseTest.executer("cmd", "/c start /max "+baseFolder+"images/"+sura+"_"+currentAya+".png");
+							BaseTest.executer("cmd", "/c start /max "+baseFolder+"images"+File.separator+sura+"_"+currentAya+".png");
 						} catch (IOException e) {
 							Logging.log(e);
 						}
@@ -1241,7 +1260,7 @@ public class ReciterModel {
 			 * 
 			 */
 			try {
-				TextFiles.save(baseFolder+"mp3/"+mashayekh[reciter]+"/"+leadingZeros(sura,3)+"/split.txt", Long.toString(common.Timer.getTime(mashayekh[reciter]+"/"+leadingZeros(sura,3))));
+				TextFiles.save(baseFolder+"mp3"+File.separator+mashayekh[reciter]+File.separator+leadingZeros(sura,3)+File.separator+"split.txt", Long.toString(common.Timer.getTime(mashayekh[reciter]+File.separator+leadingZeros(sura,3))));
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
@@ -1278,8 +1297,8 @@ public class ReciterModel {
 		Logging.log("Build: "+TextFiles.JAR_BUILD, 1);
 		Scanner input=new Scanner(System.in);
 		String command="";
-		Logging.log("OS Name: ");
-
+		Logging.log("OS Name: "+Logging.getOSName());
+                Downloads.start();
 		while(true){
 			System.out.print("<<Reciter>>");
 			command=input.nextLine();

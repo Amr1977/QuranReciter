@@ -5,6 +5,7 @@
  */
 
 package main;
+import common.Downloads;
 import javafx.embed.swing.JFXPanel;
 import logging.FreeTTS;
 import logging.Logging;
@@ -39,24 +40,23 @@ public class ReciterWindow extends javax.swing.JFrame {
         public static ImageIcon getAyaImage(int sura, int aya){
             String fileName;
             String startLocation=TextFiles.getStartLocation();
-            Logging.log("Start Location:"+startLocation);
-            new File(startLocation+"/images/").mkdirs();
-            fileName=startLocation+"/images/"+sura+"_"+aya+".png";
+            new File(startLocation+"images"+File.separator).mkdirs();
+            fileName=startLocation+"images"+File.separator+sura+"_"+aya+".png";
             File f=new File(fileName);
             if (!f.isFile()){
                 try {
                     //ReciterModel.downloadFile("http://www.everyayah.com/data/quranpngs/"+sura+"_"+aya+".png",fileName);
-                    ReciterModel.downloadFile("https://googledrive.com/host/0B20GSmZRgPGCfmwxbnJjckFYVDFnWUgwMXhiTklZSmlDYXZrZ1pkLVhyYmI0UjE4MHJ6RVU/"+sura+"_"+aya+".png",fileName);
+                    Downloads.downloadFile("https://googledrive.com/host/0B20GSmZRgPGCfmwxbnJjckFYVDFnWUgwMXhiTklZSmlDYXZrZ1pkLVhyYmI0UjE4MHJ6RVU/"+sura+"_"+aya+".png",fileName);
                 } catch (Exception ex) {
                     Logger.getLogger(ReciterWindow.class.getName()).log(Level.SEVERE, null, ex);
                     try {
-                        ReciterModel.downloadFile("http://www.everyayah.com/data/quranpngs/"+sura+"_"+aya+".png",fileName);
+                        Downloads.downloadFile("http://www.everyayah.com/data/quranpngs/"+sura+"_"+aya+".png",fileName);
                     } catch (Exception ex1) {
                         Logger.getLogger(ReciterWindow.class.getName()).log(Level.SEVERE, null, ex1);
                     }
                 }
             }
-            Logging.log("getAyaimage: "+fileName);
+            //Logging.log("getAyaimage: "+fileName);
             return getImage(fileName);
         }
         
