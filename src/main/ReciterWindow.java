@@ -5,6 +5,7 @@
  */
 
 package main;
+import javafx.embed.swing.JFXPanel;
 import logging.FreeTTS;
 import logging.Logging;
 import logging.TextFiles;
@@ -30,6 +31,7 @@ public class ReciterWindow extends javax.swing.JFrame {
     /**
      * Creates new form NewJFrame
      */
+    public static JFXPanel fxPanel = new JFXPanel();
 	public static ReciterWindow reciterWindow=null;
         public static String[] surasWithNumbers=new String[115];
         public static String[] readersWithNumbers=new String[11];
@@ -192,6 +194,7 @@ public class ReciterWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        add(fxPanel);
         PAUSE = new javax.swing.JToggleButton();
         ayaRepeatForEver = new javax.swing.JToggleButton();
         jScrollPane1 = new javax.swing.JScrollPane();

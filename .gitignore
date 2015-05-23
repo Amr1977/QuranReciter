@@ -12,3 +12,8 @@ images
 .settings
 bin
 build
+mp3
+/log
+/classes
+/log.txt
+/reciter-state.txt

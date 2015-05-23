@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="QuranReciter">
+    <output-path>$PROJECT_DIR$/classes/artifacts/QuranReciter</output-path>
+    <root id="archive" name="QuranReciter.jar">
+      <element id="module-output" name="QuranReciter" />
+      <element id="library" level="project" name="basicplayer3.0" />
+    </root>
+  </artifact>
+</component>
