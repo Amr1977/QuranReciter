@@ -194,7 +194,6 @@ public class ReciterWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        add(fxPanel);
         PAUSE = new javax.swing.JToggleButton();
         ayaRepeatForEver = new javax.swing.JToggleButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -367,6 +366,7 @@ public class ReciterWindow extends javax.swing.JFrame {
         mute.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         mute.setText("Speech Off");
         mute.setToolTipText("<html>\nON: Ctrl+Alt+NUM_1<br>\nOFF: Ctrl+Alt+NUM_0");
+        mute.setEnabled(false);
         mute.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 muteMouseClicked(evt);

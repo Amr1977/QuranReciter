@@ -1,5 +1,7 @@
 package main;
 
+import common.Sound;
+import static common.Sound.getMediaPlayer;
 import java.awt.Image;
 import java.awt.Menu;
 import java.awt.MenuItem;
@@ -15,6 +17,7 @@ import java.util.Scanner;
 import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.media.MediaPlayer;
 
 
 
@@ -25,8 +28,6 @@ import org.apache.commons.io.FileUtils;
 
 
 import test.BaseTest;
-import javazoom.jlgui.basicplayer.BasicPlayer;
-import javazoom.jlgui.basicplayer.BasicPlayerException;
 //import main.Reciter.Downloader;
 //import common.Items;
 import logging.Logging;
@@ -586,62 +587,14 @@ public class ReciterModel {
 
 
 
-	public static BasicPlayer player = null;
+	
 
 	public static void playMp3(String fileName) throws Exception{
-		Logger.getLogger(BasicPlayer.class.getName()).setLevel(Level.OFF);
-		if (player==null){
-			player=new BasicPlayer();
-		}
-		if (new File(fileName).exists()){
-			Logger.getLogger(BasicPlayer.class.getName()).setLevel(Level.OFF);
-			Logging.log(fileName);
-			try {
-				player.open(new URL("file:///" + fileName));
-				Logger.getLogger(BasicPlayer.class.getName()).setLevel(Level.OFF);
-				common.Timer.remove(mashayekh[reciter]+"/"+leadingZeros(sura,3));
-				common.Timer.start(mashayekh[reciter]+"/"+leadingZeros(sura,3));
-				player.play();
-				//Logging.log("sleep time: "+player.getSleepTime()); //that returned -1 !!
-				//Logging.log("player.getSleepTime()="+player.getSleepTime());
-				//Logging.log(Logging.getLogFile().toString());
-				Logger.getLogger(BasicPlayer.class.getName()).setLevel(Level.OFF);
-				while(player.getStatus()==BasicPlayer.PLAYING){
-					Thread.sleep(10);
-				}
-
-			} catch (Exception e) {
-				Logging.log(e);
-			}
-		}
-
+		
+		Sound.playMp3(fileName);
 	}
 
 	
-	public static void playMp3(String fileName,long startPosition, long endPosition) throws Exception{
-		Logger.getLogger(BasicPlayer.class.getName()).setLevel(Level.OFF);
-		if (player==null){
-			player=new BasicPlayer();
-		}
-		if (new File(fileName).exists()){
-			Logger.getLogger(BasicPlayer.class.getName()).setLevel(Level.OFF);
-			Logging.log(fileName);
-			try {
-				player.open(new URL("file:///" + fileName));
-				Logger.getLogger(BasicPlayer.class.getName()).setLevel(Level.OFF);
-				player.seek(startPosition);
-				player.play();
-				//TODO find out how to return current position
-				while(player.seek(-1)<endPosition){
-					Thread.sleep(50);
-				}
-				Logger.getLogger(BasicPlayer.class.getName()).setLevel(Level.OFF);
-			} catch (Exception e) {
-				Logging.log(e);
-			}
-		}
-
-	}
 	public static  void readAya(int sheik, int sura, int aya){
 		downloadAyat(sheik,sura,aya,aya);
 		if (!DOWNLOAD_ONLY){
@@ -1301,14 +1254,14 @@ public class ReciterModel {
 			Logging.log((PAUSE?"Force pause.":"Force continue."),1);	
 			if(PAUSE){
 				try {
-					player.pause();
-				} catch (BasicPlayerException e) {
+					getMediaPlayer().pause();
+				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			} else{
 				try {
-					player.play();
-				} catch (BasicPlayerException e) {
+					getMediaPlayer().play();
+				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}

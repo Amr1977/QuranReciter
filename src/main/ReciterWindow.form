@@ -373,6 +373,7 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Speech Off"/>
         <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;&#xa;ON: Ctrl+Alt+NUM_1&lt;br&gt;&#xa;OFF: Ctrl+Alt+NUM_0"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="muteMouseClicked"/>
