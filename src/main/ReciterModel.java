@@ -529,6 +529,7 @@ public class ReciterModel {
 	}
 
 	public static void downloadAyat(int sheikhID,int sura, int startAya, int endAya){
+            Logging.log("downloadAyat: sheik: "+sheikhID+" sura["+sura+"] startAya["+startAya+"] edAya["+endAya+"]");
 		if (endAya>ayatCount[sura]){
 			endAya=ayatCount[sura];
 		}
@@ -549,6 +550,7 @@ public class ReciterModel {
 
 			try {
 				Downloads.add(fileUrl,filename);
+                                
 			} catch (Exception e) {
 				// TODO what if Internet not available
 
@@ -595,14 +597,36 @@ public class ReciterModel {
 		Sound.playMp3(fileName);
 	}
 
+        
+        public static int getSura(int currentSura, int CurrentAya, int advance){
+            if (advance==0){
+                return currentSura;
+            }else{
+                
+            }
+            return 0;
+        }
+        
+        public static int getAya(int currentSura, int CurrentAya, int advance){
+            
+            return 0;
+        }
 	
 	public static  void readAya(int sheik, int sura, int aya){
-            for(int i=0;i<downloadQueueMaxSize;i++){
-                if ((aya+i)<ayatCount[sura]){
+            //download ahead entries insertion
+            //TODO fix this
+            //TODO handle immediate shutdown (create a folder with a separate 
+            //text file for each file being downloaded and erase file after 
+            //download complete, name files randomly)
+            //maybe we could use sqlite db
+            Logging.log("readAya: sheik:["+sheik+"], sura: ["+sura+"], aya:["+aya+"]");
+            for(int i=0;i<=downloadQueueMaxSize;i++){
+                if ((aya+i) <= ayatCount[sura]){
                     downloadAyat(sheik,sura,aya+i,aya+i);
                 }else{
                     int newAya=(aya+i)-ayatCount[sura];
-                    int newSura=(sura+1) < 114 ? (sura+1) : 1 ;
+                    //TODO what if next sura is shorter than that
+                    int newSura=(sura+1) <= 114 ? (sura+1) : 1 ;
                     downloadAyat(sheik,newSura,newAya,newAya);
                 }
                     
@@ -614,7 +638,7 @@ public class ReciterModel {
                             String fileName=baseFolder+"mp3"+File.separator+mashayekh[sheik]+File.separator+leadingZeros(sura,3)+File.separator+leadingZeros(sura,3)+leadingZeros(aya,3)+".mp3";
                             Logging.log("Waiting for file to Download: "+fileName);
                             while(Downloads.isInQueue(fileName)){
-                                Thread.sleep(100);
+                                Thread.sleep(10);
                             }
                             Logging.log("Waiting completed: "+fileName);
                             playMp3(fileName);
