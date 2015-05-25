@@ -637,8 +637,11 @@ public class ReciterModel {
 			try {
                             String fileName=baseFolder+"mp3"+File.separator+mashayekh[sheik]+File.separator+leadingZeros(sura,3)+File.separator+leadingZeros(sura,3)+leadingZeros(aya,3)+".mp3";
                             Logging.log("Waiting for file to Download: "+fileName);
-                            while(Downloads.isInQueue(fileName)){
+                            while(Downloads.isInQueue(fileName) && !(AYA_CHANGE || SURA_CHANGE)){
                                 Thread.sleep(10);
+                            }
+                            if (AYA_CHANGE || SURA_CHANGE){
+                                return;
                             }
                             Logging.log("Waiting completed: "+fileName);
                             playMp3(fileName);
