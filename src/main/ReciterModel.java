@@ -524,6 +524,10 @@ public class ReciterModel {
     }
 
     public static void downloadAyat(int sheikhID, int sura, int startAya, int endAya) {
+        downloadAyat( sheikhID,  sura,  startAya,  endAya,  false);
+    }
+    
+    public static void downloadAyat(int sheikhID, int sura, int startAya, int endAya, boolean inQueueHead) {
         Logging.log("downloadAyat: sheik: " + sheikhID + " sura[" + sura + "] startAya[" + startAya + "] edAya[" + endAya + "]");
         if (endAya > ayatCount[sura]) {
             endAya = ayatCount[sura];
@@ -531,6 +535,7 @@ public class ReciterModel {
         if (startAya > ayatCount[sura]) {
             startAya = 1;
         }
+        
         for (int aya = startAya; aya <= endAya; aya++) {
             String foldername = baseFolder + "mp3" + File.separator + mashayekh[sheikhID] + File.separator + leadingZeros(sura, 3);
             String filename = baseFolder + "mp3" + File.separator + mashayekh[sheikhID] + File.separator + leadingZeros(sura, 3) + File.separator + leadingZeros(sura, 3) + leadingZeros(aya, 3) + ".mp3";
@@ -544,8 +549,7 @@ public class ReciterModel {
             }
 
             try {
-                Downloads.add(fileUrl, filename);
-
+                Downloads.add(fileUrl, filename,inQueueHead);
             } catch (Exception e) {
                 // TODO what if Internet not available
 
