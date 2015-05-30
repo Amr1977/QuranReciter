@@ -522,7 +522,13 @@ public class ReciterModel {
         }
         downloadAyat(number, sura, 1, ayatCount[sura]);
     }
-
+    /**
+     * appends to the end of download queue
+     * @param sheikhID
+     * @param sura
+     * @param startAya
+     * @param endAya 
+     */
     public static void downloadAyat(int sheikhID, int sura, int startAya, int endAya) {
         downloadAyat( sheikhID,  sura,  startAya,  endAya,  false);
     }
@@ -536,7 +542,9 @@ public class ReciterModel {
             startAya = 1;
         }
         
-        for (int aya = startAya; aya <= endAya; aya++) {
+        Logging.log("inQueueHead: "+inQueueHead);
+        if (!inQueueHead){
+            for (int aya = startAya ;  aya <= endAya; aya++ ) {
             String foldername = baseFolder + "mp3" + File.separator + mashayekh[sheikhID] + File.separator + leadingZeros(sura, 3);
             String filename = baseFolder + "mp3" + File.separator + mashayekh[sheikhID] + File.separator + leadingZeros(sura, 3) + File.separator + leadingZeros(sura, 3) + leadingZeros(aya, 3) + ".mp3";
             String fileUrl = "http://www.everyayah.com/data/" + mashayekh[sheikhID] + "/" + leadingZeros(sura, 3) + leadingZeros(aya, 3) + ".mp3";
@@ -555,12 +563,42 @@ public class ReciterModel {
 
                 File f = new File(filename);
                 if (f.isFile()) {
-                    f.deleteOnExit();
+                    f.delete();
                 }
                 Logging.log(e);
             }
-
+            
         }
+        }else{
+            for (int aya = endAya ;  aya >= startAya; aya-- ) {
+            String foldername = baseFolder + "mp3" + File.separator + mashayekh[sheikhID] + File.separator + leadingZeros(sura, 3);
+            String filename = baseFolder + "mp3" + File.separator + mashayekh[sheikhID] + File.separator + leadingZeros(sura, 3) + File.separator + leadingZeros(sura, 3) + leadingZeros(aya, 3) + ".mp3";
+            String fileUrl = "http://www.everyayah.com/data/" + mashayekh[sheikhID] + "/" + leadingZeros(sura, 3) + leadingZeros(aya, 3) + ".mp3";
+            try {
+                new File(foldername).mkdirs();
+            } catch (Exception e) {
+                Logging.log("Can't create folder [" + foldername + "]");
+                Logging.log(e);
+
+            }
+
+            try {
+                Downloads.add(fileUrl, filename,inQueueHead);
+                Logging.log("Download Queue entry added: "+fileUrl);
+            } catch (Exception e) {
+                // TODO what if Internet not available
+
+                File f = new File(filename);
+                if (f.isFile()) {
+                    f.delete();
+                }
+                Logging.log(e);
+            }
+            
+        }
+        }
+        
+        
     }
 
     /**
@@ -602,7 +640,19 @@ public class ReciterModel {
             return getVerseAhead(nextSura, 1, ((currentAya + count - 1) - ayatCount[currentSura]));
         }
     }
-
+    
+    public static void downloadVersesAhead(){
+        int sheik = reciter;
+        int sura1 = sura;
+        int aya=currentAya;
+        Downloads.downloadsPause(true);
+        for (int i = 0; i <= downloadAheadLength; i++) {
+            Verse verse = getVerseAhead(sura1, aya, downloadAheadLength-i);
+            downloadAyat(sheik, verse.getSuraNumber(), verse.getVerseNumber(), verse.getVerseNumber(),!DOWNLOAD_ONLY);
+        }
+        Downloads.downloadsPause(false);
+    }
+    
     public static void readAya(int sheik, int sura, int aya) {
             //download ahead entries insertion
         //TODO fix this
@@ -611,10 +661,8 @@ public class ReciterModel {
         //download complete, name files randomly)
         //maybe we could use sqlite db
         Logging.log("readAya: sheik:[" + sheik + "], sura: [" + sura + "], aya:[" + aya + "]");
-        for (int i = 0; i <= downloadAheadLength; i++) {
-            Verse verse = getVerseAhead(sura, aya, i);
-            downloadAyat(sheik, verse.getSuraNumber(), verse.getVerseNumber(), verse.getVerseNumber());
-        }
+        
+        downloadVersesAhead();
 
         if (!DOWNLOAD_ONLY) {
             try {
@@ -627,6 +675,9 @@ public class ReciterModel {
                     return;
                 }
                 Logging.log("Waiting completed: " + fileName);
+                while (Sound.isPLAYING()) {
+                    Thread.sleep(10);
+                }
                 playMp3(fileName);
                 saveState();
             } catch (Exception e) {
@@ -854,6 +905,7 @@ public class ReciterModel {
                 try {
                     reciter = Integer.valueOf(terms[1]);
                     Logging.log("Reciter set to [" + mashayekh[reciter] + "]", 1);
+                    downloadVersesAhead();
                 } catch (Exception e) {
                     Logging.log(e);
                 }
@@ -920,6 +972,7 @@ public class ReciterModel {
                     ayaEnd = ayatCount[sura];
                     currentAya = 1;
                     Logging.log("Sura set to [" + Sura_Name[sura] + "]", 1);
+                    downloadVersesAhead();
                 } catch (Exception e) {
                     Logging.log(e);
                 }
@@ -931,6 +984,7 @@ public class ReciterModel {
                     currentAya = Integer.valueOf(terms[1]);
                     AYA_CHANGE = true;
                     Logging.log("Aya set to [" + currentAya + "]", 1);
+                    downloadVersesAhead();
                 } catch (Exception e) {
                     Logging.log(e);
                 }
@@ -977,6 +1031,7 @@ public class ReciterModel {
                 }
                 Logging.log("going to next sura [" + Sura_Name[sura] + "]", 1);
                 SURA_CHANGE = true;
+                downloadVersesAhead();
                 break;
 
             case "sura-":
@@ -987,6 +1042,7 @@ public class ReciterModel {
                 }
                 SURA_CHANGE = true;
                 Logging.log("going to previous sura [" + Sura_Name[sura] + "]", 1);
+                downloadVersesAhead();
                 break;
 
             case "n":
@@ -1033,6 +1089,7 @@ public class ReciterModel {
                         SURA_CHANGE = true;
                         break;
                 }
+                downloadVersesAhead();
                 break;
 
             case "prev":
@@ -1077,6 +1134,7 @@ public class ReciterModel {
                         SURA_CHANGE = true;
                         break;
                 }
+                downloadVersesAhead();
                 break;
 
             case "srepeat":
