@@ -678,7 +678,27 @@ public class ReciterModel {
                 while (Sound.isPLAYING()) {
                     Thread.sleep(10);
                 }
-                playMp3(fileName);
+                while(true){
+                try{
+                    playMp3(fileName);
+                    break;
+                }catch(Exception e){
+                    Logging.log("Error playing file: ["+fileName+"] file will be deleted.");
+                    Thread.sleep(500);
+                    if (new File(fileName).delete()){
+                        Logging.log("Deleted file: "+fileName);
+                    }else{
+                        Logging.log("Error Deleting file: "+fileName);
+                    }
+                    downloadVersesAhead();
+                    //should break if sura/aya/reciter changed
+                    if (reciterChanged || AYA_CHANGE || SURA_CHANGE ){
+                        break;
+                    }
+                    }    
+                }
+                
+                
                 saveState();
             } catch (Exception e) {
                 // TODO Auto-generated catch block
@@ -764,6 +784,7 @@ public class ReciterModel {
                     }
                     Logging.log("Aya number " + currentAya, 1);
                     if (SURA_CHANGE) {
+                        SURA_CHANGE=false;
                         ayaStart = 1;
                         ayaEnd = ayatCount[sura];
                         break;
@@ -825,6 +846,9 @@ public class ReciterModel {
                             ayaStart = 1;
                             ayaEnd = ayatCount[sura];
                             break;
+                        }
+                        if (reciterChanged){
+                            reciterChanged=false;
                         }
                         ReciterWindow.refreshState();
                         try {
@@ -906,6 +930,7 @@ public class ReciterModel {
                     reciter = Integer.valueOf(terms[1]);
                     Logging.log("Reciter set to [" + mashayekh[reciter] + "]", 1);
                     downloadVersesAhead();
+                    reciterChanged=true;
                 } catch (Exception e) {
                     Logging.log(e);
                 }
