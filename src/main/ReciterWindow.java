@@ -35,7 +35,15 @@ public class ReciterWindow extends javax.swing.JFrame {
     public static JFXPanel fxPanel = new JFXPanel();
 	public static ReciterWindow reciterWindow=null;
         public static String[] surasWithNumbers=new String[115];
-        public static String[] readersWithNumbers=new String[11];
+        public static String[] readersWithNumbers(){
+            String [] result=new String [ReciterModel.mashayekh.length];
+            for (int i=0; i<ReciterModel.mashayekh.length;i++){
+                result[i]=i+" "+ReciterModel.mashayekh[i];
+                        
+            }
+            return result;
+        }
+//TODO fix this bug, unmber is not 11
         
         public static ImageIcon getAyaImage(int sura, int aya){
             String fileName;
@@ -168,20 +176,16 @@ public class ReciterWindow extends javax.swing.JFrame {
         fitWidth.setSelected(true);
         while(!ReciterModel.RESTORED_STATE){
             try {
-                Thread.sleep(1000);
+                Thread.sleep(100);
             } catch (InterruptedException ex) {
                 Logger.getLogger(ReciterWindow.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-            readersWithNumbers=new String[ReciterModel.mashayekh.length];
-            for(int i=0;i<readersWithNumbers.length;i++){
-                readersWithNumbers[i]=(i+" "+ReciterModel.mashayekh[i]);
-            }
             for(int i=1;i<=114;i++){
                 surasWithNumbers[i]=(i+" "+ReciterModel.Sura_Name[i]);
             }
             suraList.setListData(surasWithNumbers);
-            recitersList.setListData(readersWithNumbers);
+            recitersList.setListData(readersWithNumbers());
             refreshState();
     }
 
@@ -765,7 +769,9 @@ public class ReciterWindow extends javax.swing.JFrame {
         ReciterModel.execute("reciter "+(recitersList.getSelectedIndex()));
     }//GEN-LAST:event_recitersListMouseClicked
     public static void setReciter(int reciter){
-        recitersList.setSelectedValue(readersWithNumbers[reciter], true);
+        Logging.log("Reciter: "+reciter);
+        Logging.log("Mashayekh: "+ReciterModel.mashayekh.length);
+        recitersList.setSelectedValue(readersWithNumbers()[reciter], true);
     }
     private void recitersListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_recitersListValueChanged
         recitersList.setSelectedValue(recitersList.getSelectedValue(), true);
