@@ -693,6 +693,7 @@ public class ReciterModel {
                     downloadVersesAhead();
                     //should break if sura/aya/reciter changed
                     if (reciterChanged || AYA_CHANGE || SURA_CHANGE ){
+                        Logging.log("Breaking[5]");
                         break;
                     }
                     }    
@@ -760,6 +761,8 @@ public class ReciterModel {
 
 				//add basmalla
                 if (SURA_CHANGE) {
+                    SURA_CHANGE=false;
+                    Logging.log("Breaking[0]");
                     break;
                 }
                 if ((sura != 9) && (sura != 1)) {
@@ -787,7 +790,8 @@ public class ReciterModel {
                         SURA_CHANGE=false;
                         ayaStart = 1;
                         ayaEnd = ayatCount[sura];
-                        break;
+                        Logging.log("Breaking[1] cancelled");
+                        //break;
                     }
                     if (currentMode == 1) {
                         ayaRepeatCount = rRepeat.nextInt(7) + 1;
@@ -811,6 +815,8 @@ public class ReciterModel {
 
                         }
                         if (SURA_CHANGE) {
+                            SURA_CHANGE=false;
+                            Logging.log("Breaking[10]");
                             break;
                         }
                         if (EXIT) {
@@ -845,12 +851,13 @@ public class ReciterModel {
                         if (SURA_CHANGE) {
                             ayaStart = 1;
                             ayaEnd = ayatCount[sura];
+                            Logging.log("Breaking[2]");
                             break;
                         }
                         if (reciterChanged){
                             reciterChanged=false;
                         }
-                        ReciterWindow.refreshState();
+                        //ReciterWindow.refreshState();
                         try {
                             readAya(reciter, sura, aya);
                             ayaCount++;
@@ -878,7 +885,8 @@ public class ReciterModel {
                 ayaEnd = ayatCount[sura];
                 Logging.log("Going to next sura: " + Sura_Name[sura], 1);
 
-            } else {
+            } 
+            else {
                 SURA_CHANGE = false;
             }
 

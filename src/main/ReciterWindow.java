@@ -744,6 +744,7 @@ public class ReciterWindow extends javax.swing.JFrame {
         ReciterModel.execute("sura "+suraList.getSelectedIndex());
     }//GEN-LAST:event_suraListMouseClicked
     public static void setAya(int aya){
+        Logging.log("aya: "+aya);
         ayaList.setSelectedValue(("aya #"+(aya+1)), true);
     }
     private void ayaListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ayaListMouseClicked
@@ -769,8 +770,8 @@ public class ReciterWindow extends javax.swing.JFrame {
         ReciterModel.execute("reciter "+(recitersList.getSelectedIndex()));
     }//GEN-LAST:event_recitersListMouseClicked
     public static void setReciter(int reciter){
-        Logging.log("Reciter: "+reciter);
-        Logging.log("Mashayekh: "+ReciterModel.mashayekh.length);
+       // Logging.log("Reciter: "+reciter);
+        //Logging.log("Mashayekh: "+ReciterModel.mashayekh.length);
         recitersList.setSelectedValue(readersWithNumbers()[reciter], true);
     }
     private void recitersListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_recitersListValueChanged
