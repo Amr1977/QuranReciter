@@ -584,7 +584,7 @@ public class ReciterModel {
 
             try {
                 Downloads.add(fileUrl, filename,inQueueHead);
-                Logging.log("Download Queue entry added: "+fileUrl);
+                //Logging.log("Download Queue entry added: "+fileUrl);
             } catch (Exception e) {
                 // TODO what if Internet not available
 
