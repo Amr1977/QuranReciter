@@ -32,7 +32,7 @@ import logging.FreeTTS;
 //TODO mode 4 add mode each reciter reads complete sura,others read same sura afterwards
 //TODO mode 5 add mode each reciter reads complete sura,others read next suras afterwards
 public class ReciterModel {
-
+    private static boolean viewNeedsRefresh=false;
     public static boolean RESTORED_STATE = false;
     public static int NORMAL_MODE = 0;
     public static int RABANI_MODE = 1;
@@ -168,6 +168,18 @@ public class ReciterModel {
     public static String[] mashayekh;
 
     static {
+        Runtime.getRuntime().addShutdownHook(new Thread() {
+            @Override
+            public void run() {
+                try {
+                    Logging.log("ShutdownHook: saving state...", 1);
+                    ReciterModel.saveState();
+                } catch (IOException e) {
+                    recordStackTrace(e);
+                    Logging.log(e);
+                }
+            }
+        });
         mashayekh = arrayListToArray(TextFiles.load(baseFolder + "readers.txt"));
         //handle if file not found
         if (mashayekh == null || mashayekh.length == 0) {
@@ -309,12 +321,26 @@ public class ReciterModel {
     public static Integer downloadAheadLength = 7;
     public static boolean isDownloading = false;
     public static boolean SURA_REPEAT_FOREVER = false;
+
+    /**
+     * @return the viewNeedsRefresh
+     */
+    public static boolean isViewNeedsRefresh() {
+        return viewNeedsRefresh;
+    }
+
+    /**
+     * @param aViewNeedsRefresh the viewNeedsRefresh to set
+     */
+    public static void setViewNeedsRefresh(boolean aViewNeedsRefresh) {
+        viewNeedsRefresh = aViewNeedsRefresh;
+    }
     public TreeMap<String, String> config = new TreeMap<String, String>(String.CASE_INSENSITIVE_ORDER);
     public static boolean DOWNLOAD_ONLY = false;
     public static boolean PAUSE = false;
     public static boolean EXIT = false;
     //public static boolean MODE_CHANGE=false;
-    public static boolean suraChanged = false;
+    //public static boolean suraChanged = false;
     public static boolean reciterChanged = false;
     public static Integer reciter = 0;
     public static String reciterName;
@@ -383,21 +409,32 @@ public class ReciterModel {
         TextFiles.save(lines, baseFolder + "reciter-state.txt");
         Logging.log("states saved.");
     }
-
+    public static void setDefaultState() {
+        reciterName = mashayekh[0];
+        reciter = 0;
+        sura = 1;
+        ayaStart = 1;
+        currentAya = 1;
+        ayaEnd = 7;
+        ayaRepeatCount = 1;
+        ayaWait = 0;
+        groupRepeatCount = 1;
+        afterAyaWait = 0;
+        currentMode = 0;
+        downloadAheadLength = 7;
+        AYA_REPEAT_FOREVER = false;
+        DOWNLOAD_ONLY = false;
+        rabbaniReciter = false;
+        raabbaniSura = false;
+        rabbaniDelay = false;
+        speech = false;
+        RESTORED_STATE = true;
+        Logging.log("Restored Default state.");
+    }
     public static void restoreState(int state) throws Exception {
+        //TODO validate restored values !
         if (state == 0) {//fatiha
-            reciterName = mashayekh[0];
-            reciter = 0;
-            sura = 1;
-            ayaStart = 1;
-            currentAya = 1;
-            ayaEnd = 7;
-            ayaRepeatCount = 1;
-            ayaWait = 0;
-            groupRepeatCount = 1;
-            afterAyaWait = 0;
-            currentMode = 0;
-            downloadAheadLength = 7;
+            setDefaultState();
         } else {
             if (new File(baseFolder + "reciter-state.txt").exists()) {
                 ArrayList<String> lines = TextFiles.load(baseFolder + "reciter-state.txt");
@@ -476,24 +513,7 @@ public class ReciterModel {
                 }
 
             } else {
-                reciterName = mashayekh[0];
-                reciter = 0;
-                sura = 1;
-                ayaStart = 1;
-                currentAya = 1;
-                ayaEnd = 7;
-                ayaRepeatCount = 1;
-                ayaWait = 1000;
-                groupRepeatCount = 1;
-                afterAyaWait = 0;
-                currentMode = 0;
-                AYA_REPEAT_FOREVER = false;
-                DOWNLOAD_ONLY = false;
-                rabbaniReciter = false;
-                raabbaniSura = false;
-                rabbaniDelay = false;
-                speech = false;
-
+                setDefaultState();
             }
         }
         RESTORED_STATE = true;
@@ -715,18 +735,7 @@ public class ReciterModel {
     }
 
     public static void simpleReader() throws Exception {
-        Runtime.getRuntime().addShutdownHook(new Thread() {
-            @Override
-            public void run() {
-                try {
-                    Logging.log("ShutdownHook: saving state...", 1);
-                    ReciterModel.saveState();
-                } catch (IOException e) {
-                    recordStackTrace(e);
-                    Logging.log(e);
-                }
-            }
-        });
+        
 
         new File(baseFolder + "log").mkdirs();
         Logging.setLogFile(baseFolder + "log" + File.separator + Logging.getTimeStamp() + ".txt");
@@ -776,6 +785,14 @@ public class ReciterModel {
                         aya = currentAya;
                         justStarted = false;
                     } else {
+                        
+                        if (SURA_CHANGE) {
+                            //SURA_CHANGE = false;
+                            ayaStart = 1;
+                            ayaEnd = ayatCount[sura];
+                            Logging.log("Breaking[1].");
+                            break;
+                        }
                         if (AYA_CHANGE) {
                             AYA_CHANGE = false;
                             if (currentAya <= ayatCount[sura]) {
@@ -786,13 +803,7 @@ public class ReciterModel {
                         }
                     }
                     Logging.log("Aya number " + currentAya, 1);
-                    if (SURA_CHANGE) {
-                        SURA_CHANGE=false;
-                        ayaStart = 1;
-                        ayaEnd = ayatCount[sura];
-                        Logging.log("Breaking[1] cancelled");
-                        //break;
-                    }
+                    
                     if (currentMode == 1) {
                         ayaRepeatCount = rRepeat.nextInt(7) + 1;
                     } else if (currentMode == 2) {
