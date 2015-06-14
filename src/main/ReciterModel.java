@@ -621,36 +621,9 @@ public class ReciterModel {
         
     }
 
-    /**
-     * Tries to download a file from the url (if file not already existing) and
-     * save it to filePath.
-     *
-     * @param url to download
-     * @param filePath full destination file name to save.
-     * @throws Exception
-     */
-    public static void downloadFileZ(String url, String filePath) throws Exception {
-        File myFile = new File(filePath);
-        if (!myFile.exists()) {
-            try {
-                isDownloading = true;
-                Logging.log("Download start: " + url);
-                FileUtils.copyURLToFile(new URL(url), myFile);
-                Logging.log("Download ended: " + url);
-                isDownloading = false;
-            } catch (Exception e) {
-                Logging.log("Error downloading/copying file: " + url);
-            }
-            isDownloading = false;
-        } else {
-            Logging.log("downloadFile: File already exists [" + filePath + "].");
-        }
-    }
+   
 
-    public static void playMp3(String fileName) throws Exception {
-
-        Sound.playMp3(fileName);
-    }
+   
 
     public static Verse getVerseAhead(int currentSura, int currentAya, int count) {
         if ((count + currentAya) <= ayatCount[currentSura]) {
@@ -700,7 +673,7 @@ public class ReciterModel {
                 }
                 while(true){
                 try{
-                    playMp3(fileName);
+                    Sound.playMp3(fileName);
                     break;
                 }catch(Exception e){
                     Logging.log("Error playing file: ["+fileName+"] file will be deleted.");
@@ -774,6 +747,23 @@ public class ReciterModel {
                     Logging.log("Breaking[0]");
                     break;
                 }
+                while (PAUSE && (!EXIT)) {
+                    Thread.sleep(1000);
+                    if (SURA_CHANGE) {
+                        break;
+                    }
+                    ReciterWindow.refreshState();
+
+                }
+                if (EXIT) {
+                    System.exit(0);
+                } 
+                if (SURA_CHANGE) {
+                    SURA_CHANGE = false;
+                    Logging.log("Breaking[11]");
+                    break;
+                }
+                            
                 if ((sura != 9) && (sura != 1)) {
                     //ayaLabel.setIcon(getAyaImage(1, 1));
                     readAya(reciter, 1, 1);
@@ -825,14 +815,15 @@ public class ReciterModel {
                             ReciterWindow.refreshState();
 
                         }
+                        if (EXIT) {
+                            System.exit(0);
+                        }
                         if (SURA_CHANGE) {
                             SURA_CHANGE=false;
                             Logging.log("Breaking[10]");
                             break;
                         }
-                        if (EXIT) {
-                            System.exit(0);
-                        }
+                        
                         if (currentMode == 1) {
                             ayaWait = rWait.nextInt(40000) + 1;
                         }
