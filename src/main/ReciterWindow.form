@@ -670,13 +670,21 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                          <Component id="jScrollPane3" min="-2" pref="675" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane8" min="-2" pref="439" max="-2" attributes="0"/>
-                              <Component id="jButton1" min="-2" pref="228" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                                  <Component id="jScrollPane3" min="-2" pref="675" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jScrollPane8" min="-2" pref="439" max="-2" attributes="0"/>
+                                      <Component id="jButton1" min="-2" pref="228" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="randomReciter" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace pref="382" max="32767" attributes="0"/>
                       </Group>
@@ -693,7 +701,9 @@
                               </Group>
                               <Component id="jScrollPane3" min="-2" pref="277" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="0" pref="176" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="randomReciter" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="151" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -793,6 +803,19 @@
                     </Component>
                   </SubComponents>
                 </Container>
+                <Component class="javax.swing.JCheckBox" name="randomReciter">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Rabbani Reader Selection"/>
+                    <Property name="toolTipText" type="java.lang.String" value="&#x627;&#x644;&#x642;&#x627;&#x631;&#x626; &#x644;&#x644;&#x633;&#x648;&#x629; &#x627;&#x644;&#x62a;&#x627;&#x644;&#x64a;&#x629; &#x64a;&#x62a;&#x645; &#x627;&#x62e;&#x62a;&#x64a;&#x627;&#x631;&#x647; &#x631;&#x628;&#x627;&#x646;&#x64a;&#x627;&#xa;Next Sura reciter will be chosen Rabani.&#xa;"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="randomReciterMouseClicked"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="randomReciterActionPerformed"/>
+                  </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                  </AuxValues>
+                </Component>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="modesjPanel">
@@ -812,7 +835,6 @@
                           <Component id="jScrollPane5" min="-2" pref="499" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="randomReciter" min="-2" max="-2" attributes="0"/>
                               <Component id="randomDelay" min="-2" max="-2" attributes="0"/>
                               <Component id="rabbaniVerseRepeatCount" min="-2" max="-2" attributes="0"/>
                               <Component id="downloadMode" pref="173" max="32767" attributes="0"/>
@@ -825,9 +847,7 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                          <Component id="randomReciter" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                           <Component id="randomDelay" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="rabbaniVerseRepeatCount" min="-2" max="-2" attributes="0"/>
@@ -885,19 +905,6 @@
                     </Component>
                   </SubComponents>
                 </Container>
-                <Component class="javax.swing.JCheckBox" name="randomReciter">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Rabbani Reader Selection"/>
-                    <Property name="toolTipText" type="java.lang.String" value="&#x627;&#x644;&#x642;&#x627;&#x631;&#x626; &#x644;&#x644;&#x633;&#x648;&#x629; &#x627;&#x644;&#x62a;&#x627;&#x644;&#x64a;&#x629; &#x64a;&#x62a;&#x645; &#x627;&#x62e;&#x62a;&#x64a;&#x627;&#x631;&#x647; &#x631;&#x628;&#x627;&#x646;&#x64a;&#x627;&#xa;Next Sura reciter will be chosen Rabani.&#xa;"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="randomReciterMouseClicked"/>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="randomReciterActionPerformed"/>
-                  </Events>
-                  <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
-                  </AuxValues>
-                </Component>
                 <Component class="javax.swing.JCheckBox" name="randomDelay">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Rabbani inter-verse pause"/>

@@ -235,10 +235,10 @@ public class ReciterWindow extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jScrollPane8 = new javax.swing.JScrollPane();
         recitersList1 = new javax.swing.JList();
+        randomReciter = new javax.swing.JCheckBox();
         modesjPanel = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         modeList = new javax.swing.JList();
-        randomReciter = new javax.swing.JCheckBox();
         randomDelay = new javax.swing.JCheckBox();
         rabbaniVerseRepeatCount = new javax.swing.JCheckBox();
         downloadMode = new javax.swing.JToggleButton();
@@ -680,17 +680,35 @@ public class ReciterWindow extends javax.swing.JFrame {
         });
         jScrollPane8.setViewportView(recitersList1);
 
+        randomReciter.setText("Rabbani Reader Selection");
+        randomReciter.setToolTipText("القارئ للسوة التالية يتم اختياره ربانيا\nNext Sura reciter will be chosen Rabani.\n");
+        randomReciter.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                randomReciterMouseClicked(evt);
+            }
+        });
+        randomReciter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                randomReciterActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout recitersjPanelLayout = new javax.swing.GroupLayout(recitersjPanel);
         recitersjPanel.setLayout(recitersjPanelLayout);
         recitersjPanelLayout.setHorizontalGroup(
             recitersjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(recitersjPanelLayout.createSequentialGroup()
-                .addGap(8, 8, 8)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 675, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(recitersjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(recitersjPanelLayout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 675, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(recitersjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(recitersjPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(randomReciter)))
                 .addContainerGap(382, Short.MAX_VALUE))
         );
         recitersjPanelLayout.setVerticalGroup(
@@ -702,7 +720,9 @@ public class ReciterWindow extends javax.swing.JFrame {
                         .addGap(11, 11, 11)
                         .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 176, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(randomReciter)
+                .addGap(0, 151, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Reciters", recitersjPanel);
@@ -723,19 +743,6 @@ public class ReciterWindow extends javax.swing.JFrame {
             }
         });
         jScrollPane5.setViewportView(modeList);
-
-        randomReciter.setText("Rabbani Reader Selection");
-        randomReciter.setToolTipText("القارئ للسوة التالية يتم اختياره ربانيا\nNext Sura reciter will be chosen Rabani.\n");
-        randomReciter.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                randomReciterMouseClicked(evt);
-            }
-        });
-        randomReciter.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                randomReciterActionPerformed(evt);
-            }
-        });
 
         randomDelay.setText("Rabbani inter-verse pause");
         randomDelay.setEnabled(false);
@@ -782,7 +789,6 @@ public class ReciterWindow extends javax.swing.JFrame {
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(modesjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(randomReciter)
                     .addComponent(randomDelay)
                     .addComponent(rabbaniVerseRepeatCount)
                     .addComponent(downloadMode, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
@@ -792,9 +798,7 @@ public class ReciterWindow extends javax.swing.JFrame {
         modesjPanelLayout.setVerticalGroup(
             modesjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(modesjPanelLayout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(randomReciter)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(57, 57, 57)
                 .addComponent(randomDelay)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(rabbaniVerseRepeatCount)
