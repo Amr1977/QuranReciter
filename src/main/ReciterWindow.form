@@ -78,6 +78,11 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JScrollPane" name="jScrollPane10">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="66" green="66" red="66" type="rgb"/>
+        </Property>
+      </Properties>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
@@ -123,9 +128,9 @@
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
-                                          <Group type="103" groupAlignment="1" attributes="0">
-                                              <Component id="ayaRepeatForEver" min="-2" pref="261" max="-2" attributes="0"/>
-                                              <Component id="suraRepeatForEver" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="suraRepeatForEver" max="32767" attributes="0"/>
+                                              <Component id="ayaRepeatForEver" max="32767" attributes="0"/>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
@@ -165,71 +170,65 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Group type="102" attributes="0">
-                                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Group type="102" attributes="0">
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Group type="102" alignment="0" attributes="0">
-                                                          <Component id="suraRepeatForEver" linkSize="1" max="32767" attributes="0"/>
-                                                          <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                                                          <Group type="103" groupAlignment="3" attributes="0">
-                                                              <Component id="exit" alignment="3" min="-2" pref="47" max="-2" attributes="0"/>
-                                                              <Component id="ayaRepeatForEver" linkSize="1" alignment="3" max="32767" attributes="0"/>
-                                                          </Group>
-                                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                          <Group type="103" groupAlignment="3" attributes="0">
-                                                              <Component id="suraRepeat" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
-                                                              <Component id="jLabel5" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                                                          </Group>
-                                                      </Group>
-                                                      <Group type="102" alignment="0" attributes="0">
-                                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                                              <Group type="102" attributes="0">
-                                                                  <Component id="fitWidth" min="-2" max="-2" attributes="0"/>
-                                                                  <EmptySpace max="32767" attributes="0"/>
-                                                                  <Component id="fitHeight" min="-2" max="-2" attributes="0"/>
-                                                              </Group>
-                                                              <Component id="PAUSE" linkSize="1" max="32767" attributes="0"/>
-                                                          </Group>
-                                                          <EmptySpace max="-2" attributes="0"/>
-                                                          <Component id="randomSura" min="-2" max="-2" attributes="0"/>
-                                                      </Group>
-                                                  </Group>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="ayaRepeat" alignment="0" min="-2" pref="42" max="-2" attributes="0"/>
-                                                      <Component id="jLabel6" min="-2" pref="42" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="suraRepeatForEver" linkSize="1" max="32767" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                                                   <Group type="103" groupAlignment="3" attributes="0">
-                                                      <Component id="jLabel2" linkSize="1" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
-                                                      <Component id="Delay" linkSize="1" alignment="3" max="32767" attributes="0"/>
+                                                      <Component id="exit" alignment="3" min="-2" pref="47" max="-2" attributes="0"/>
+                                                      <Component id="ayaRepeatForEver" linkSize="1" alignment="3" max="32767" attributes="0"/>
                                                   </Group>
-                                                  <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="3" attributes="0">
+                                                      <Component id="suraRepeat" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                                                      <Component id="jLabel5" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                                                  </Group>
                                               </Group>
-                                              <Group type="102" alignment="1" attributes="0">
-                                                  <Group type="103" groupAlignment="1" attributes="0">
-                                                      <Component id="jScrollPane7" alignment="0" max="32767" attributes="0"/>
-                                                      <Component id="jScrollPane6" max="32767" attributes="0"/>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                                      <Group type="102" attributes="0">
+                                                          <Component id="fitWidth" min="-2" max="-2" attributes="0"/>
+                                                          <EmptySpace max="32767" attributes="0"/>
+                                                          <Component id="fitHeight" min="-2" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <Component id="PAUSE" linkSize="1" max="32767" attributes="0"/>
                                                   </Group>
-                                                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="randomSura" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="ayaRepeat" alignment="0" min="-2" pref="42" max="-2" attributes="0"/>
+                                              <Component id="jLabel6" min="-2" pref="42" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="jLabel2" linkSize="1" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                                              <Component id="Delay" linkSize="1" alignment="3" max="32767" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace pref="131" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Component id="jScrollPane7" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="jScrollPane6" max="32767" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="108" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                       <Component id="jLabel7" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jLabel8" alignment="0" max="32767" attributes="0"/>
+                                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                          <Component id="jLabel8" alignment="3" max="32767" attributes="0"/>
+                                          <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Group type="102" attributes="0">
@@ -241,7 +240,7 @@
                                           <Component id="jScrollPane1" pref="284" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -252,19 +251,11 @@
                 <Component class="javax.swing.JToggleButton" name="PAUSE">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Tahoma" size="36" style="1"/>
-                    </Property>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/main/play.png"/>
+                      <Font name="Tahoma" size="14" style="1"/>
                     </Property>
                     <Property name="mnemonic" type="int" value="80"/>
-                    <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;&#xa;Pause reading (after aya complete) &lt;br&gt;&#xa;key shortcut: Ctrl+Alt+P"/>
-                    <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/main/pause.png"/>
-                    </Property>
-                    <Property name="selectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/main/pause.png"/>
-                    </Property>
+                    <Property name="text" type="java.lang.String" value="Pause"/>
+                    <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt; Pause reading (after aya complete) &lt;br&gt; key shortcut: Ctrl+Alt+P: will pause after finishing reading current verse."/>
                   </Properties>
                   <Events>
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="PAUSEMouseClicked"/>
@@ -279,8 +270,9 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="14" style="1"/>
                     </Property>
+                    <Property name="mnemonic" type="int" value="120"/>
                     <Property name="text" type="java.lang.String" value="Exit"/>
-                    <Property name="toolTipText" type="java.lang.String" value="Ctrl+Alt+X"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Ctrl+Alt+X: will exit after finishing reading current verse."/>
                   </Properties>
                   <Events>
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="exitMouseClicked"/>
@@ -396,7 +388,7 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/main/loop.png_0.06_png.png"/>
                     </Property>
-                    <Property name="mnemonic" type="int" value="82"/>
+                    <Property name="mnemonic" type="int" value="83"/>
                     <Property name="text" type="java.lang.String" value="Repeat Current Sura"/>
                     <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;&#xa;Endless Repeat current sura &lt;br&gt;&#xa;&#x62a;&#x643;&#x631;&#x627;&#x631; &#x627;&#x644;&#x633;&#x648;&#x631;&#x629; &#x644;&#x627;&#x646;&#x647;&#x627;&#x626;&#x64a; &lt;br&gt;&#xa;key shortcut:  Ctrl+Alt+S"/>
                   </Properties>
@@ -446,7 +438,7 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/main/loop.png_0.06_png.png"/>
                     </Property>
-                    <Property name="mnemonic" type="int" value="82"/>
+                    <Property name="mnemonic" type="int" value="65"/>
                     <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;&#xa;Endless Repeat current aya&lt;br&gt;&#xa;&#x62a;&#x643;&#x631;&#x627;&#x631; &#x627;&#x644;&#x622;&#x64a;&#x629; &#x644;&#x627;&#x646;&#x647;&#x627;&#x626;&#x64a; &lt;br&gt;&#xa;Ctrl+Alt+R"/>
                     <Property name="actionCommand" type="java.lang.String" value="Repeat Current Aya "/>
                     <Property name="label" type="java.lang.String" value="Repeat Current Aya"/>
@@ -679,8 +671,9 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                           <Component id="jScrollPane3" min="-2" pref="675" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jScrollPane8" min="-2" pref="439" max="-2" attributes="0"/>
                               <Component id="jButton1" min="-2" pref="228" max="-2" attributes="0"/>
@@ -691,17 +684,16 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace pref="85" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jScrollPane3" min="-2" pref="277" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
                               <Group type="102" attributes="0">
                                   <Component id="jButton1" min="-2" pref="52" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jScrollPane8" max="32767" attributes="0"/>
+                                  <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                                  <Component id="jScrollPane8" min="-2" pref="214" max="-2" attributes="0"/>
                               </Group>
+                              <Component id="jScrollPane3" min="-2" pref="277" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="176" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -847,7 +839,7 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jScrollPane5" min="-2" pref="318" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="97" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="135" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -981,7 +973,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="415" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="453" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -1003,7 +995,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="415" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="453" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -1025,7 +1017,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="415" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="453" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -1054,7 +1046,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                           <Component id="jLabel3" min="-2" pref="25" max="-2" attributes="0"/>
-                          <EmptySpace pref="370" max="32767" attributes="0"/>
+                          <EmptySpace pref="408" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>

@@ -264,12 +264,12 @@ public class ReciterWindow extends javax.swing.JFrame {
 
         jScrollPane9.setViewportView(jScrollPane4);
 
-        PAUSE.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        PAUSE.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/play.png"))); // NOI18N
+        jScrollPane10.setBackground(new java.awt.Color(102, 102, 102));
+
+        PAUSE.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         PAUSE.setMnemonic('P');
-        PAUSE.setToolTipText("<html>\nPause reading (after aya complete) <br>\nkey shortcut: Ctrl+Alt+P");
-        PAUSE.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/main/pause.png"))); // NOI18N
-        PAUSE.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/main/pause.png"))); // NOI18N
+        PAUSE.setText("Pause");
+        PAUSE.setToolTipText("<html> Pause reading (after aya complete) <br> key shortcut: Ctrl+Alt+P: will pause after finishing reading current verse.");
         PAUSE.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 PAUSEMouseClicked(evt);
@@ -280,8 +280,9 @@ public class ReciterWindow extends javax.swing.JFrame {
         });
 
         exit.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        exit.setMnemonic('x');
         exit.setText("Exit");
-        exit.setToolTipText("Ctrl+Alt+X");
+        exit.setToolTipText("Ctrl+Alt+X: will exit after finishing reading current verse.");
         exit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 exitMouseClicked(evt);
@@ -342,7 +343,7 @@ public class ReciterWindow extends javax.swing.JFrame {
 
         suraRepeatForEver.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         suraRepeatForEver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/loop.png_0.06_png.png"))); // NOI18N
-        suraRepeatForEver.setMnemonic('R');
+        suraRepeatForEver.setMnemonic('S');
         suraRepeatForEver.setText("Repeat Current Sura");
         suraRepeatForEver.setToolTipText("<html>\nEndless Repeat current sura <br>\nتكرار السورة لانهائي <br>\nkey shortcut:  Ctrl+Alt+S");
         suraRepeatForEver.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -379,7 +380,7 @@ public class ReciterWindow extends javax.swing.JFrame {
 
         ayaRepeatForEver.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         ayaRepeatForEver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/loop.png_0.06_png.png"))); // NOI18N
-        ayaRepeatForEver.setMnemonic('R');
+        ayaRepeatForEver.setMnemonic('A');
         ayaRepeatForEver.setToolTipText("<html>\nEndless Repeat current aya<br>\nتكرار الآية لانهائي <br>\nCtrl+Alt+R");
         ayaRepeatForEver.setActionCommand("Repeat Current Aya ");
         ayaRepeatForEver.setLabel("Repeat Current Aya");
@@ -540,9 +541,9 @@ public class ReciterWindow extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(rangeJPanelLayout.createSequentialGroup()
-                                .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(ayaRepeatForEver, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(suraRepeatForEver))
+                                .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(suraRepeatForEver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(ayaRepeatForEver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(PAUSE, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -570,54 +571,50 @@ public class ReciterWindow extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(rangeJPanelLayout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(33, 33, 33)
+                        .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(rangeJPanelLayout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(rangeJPanelLayout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(rangeJPanelLayout.createSequentialGroup()
-                                        .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(rangeJPanelLayout.createSequentialGroup()
-                                                .addComponent(suraRepeatForEver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addGap(5, 5, 5)
-                                                .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                    .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(ayaRepeatForEver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                                .addGap(18, 18, 18)
-                                                .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                    .addComponent(suraRepeat, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                            .addGroup(rangeJPanelLayout.createSequentialGroup()
-                                                .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                    .addGroup(rangeJPanelLayout.createSequentialGroup()
-                                                        .addComponent(fitWidth)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addComponent(fitHeight))
-                                                    .addComponent(PAUSE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(randomSura)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(ayaRepeat, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(suraRepeatForEver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(5, 5, 5)
                                         .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(Delay))
-                                        .addGap(44, 44, 44))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rangeJPanelLayout.createSequentialGroup()
-                                        .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jScrollPane6))
-                                        .addGap(21, 21, 21))))))
+                                            .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(ayaRepeatForEver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(suraRepeat, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(rangeJPanelLayout.createSequentialGroup()
+                                        .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addGroup(rangeJPanelLayout.createSequentialGroup()
+                                                .addComponent(fitWidth)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(fitHeight))
+                                            .addComponent(PAUSE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(randomSura)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(ayaRepeat, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Delay))
+                                .addContainerGap(131, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rangeJPanelLayout.createSequentialGroup()
+                                .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane6))
+                                .addGap(108, 108, 108))))
                     .addGroup(rangeJPanelLayout.createSequentialGroup()
                         .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel1)
+                                .addComponent(jLabel4)))
                         .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(rangeJPanelLayout.createSequentialGroup()
                                 .addGap(11, 11, 11)
@@ -625,7 +622,7 @@ public class ReciterWindow extends javax.swing.JFrame {
                             .addGroup(rangeJPanelLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)))
-                        .addGap(41, 41, 41))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         rangeJPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {Delay, PAUSE, ayaRepeatForEver, jLabel2, suraRepeatForEver});
@@ -688,8 +685,9 @@ public class ReciterWindow extends javax.swing.JFrame {
         recitersjPanelLayout.setHorizontalGroup(
             recitersjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(recitersjPanelLayout.createSequentialGroup()
+                .addGap(8, 8, 8)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 675, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(recitersjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -697,15 +695,14 @@ public class ReciterWindow extends javax.swing.JFrame {
         );
         recitersjPanelLayout.setVerticalGroup(
             recitersjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(recitersjPanelLayout.createSequentialGroup()
-                .addContainerGap(85, Short.MAX_VALUE)
-                .addGroup(recitersjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, recitersjPanelLayout.createSequentialGroup()
+                .addGroup(recitersjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(recitersjPanelLayout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane8)))
-                .addGap(53, 53, 53))
+                        .addGap(11, 11, 11)
+                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 176, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Reciters", recitersjPanel);
@@ -808,7 +805,7 @@ public class ReciterWindow extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(modesjPanelLayout.createSequentialGroup()
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 97, Short.MAX_VALUE))
+                .addGap(0, 135, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Modes", modesjPanel);
@@ -821,7 +818,7 @@ public class ReciterWindow extends javax.swing.JFrame {
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 415, Short.MAX_VALUE)
+            .addGap(0, 453, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Tafseer", jPanel5);
@@ -834,7 +831,7 @@ public class ReciterWindow extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 415, Short.MAX_VALUE)
+            .addGap(0, 453, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Log", jPanel1);
@@ -847,7 +844,7 @@ public class ReciterWindow extends javax.swing.JFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 415, Short.MAX_VALUE)
+            .addGap(0, 453, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Console", jPanel2);
@@ -876,7 +873,7 @@ public class ReciterWindow extends javax.swing.JFrame {
             .addGroup(aboutJPanelLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(370, Short.MAX_VALUE))
+                .addContainerGap(408, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("About", aboutJPanel);
