@@ -758,11 +758,7 @@ public class ReciterModel {
                 if (EXIT) {
                     System.exit(0);
                 } 
-                if (SURA_CHANGE) {
-                    SURA_CHANGE = false;
-                    Logging.log("Breaking[11]");
-                    break;
-                }
+                
                             
                 if ((sura != 9) && (sura != 1)) {
                     //ayaLabel.setIcon(getAyaImage(1, 1));
@@ -870,8 +866,7 @@ public class ReciterModel {
                         ReciterWindow.refreshState();
                     }
                 }
-            }
-            if (!SURA_CHANGE) {
+                if (!SURA_CHANGE) {
                 if (((currentMode == 0) || (currentMode == 2) || (currentMode == 3)) && (!raabbaniSura)) {
                     sura += 1;
                     if (sura > 114) {
@@ -891,6 +886,8 @@ public class ReciterModel {
             else {
                 SURA_CHANGE = false;
             }
+            }
+            
 
         }
     }
