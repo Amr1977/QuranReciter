@@ -102,7 +102,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jLabel7" min="-2" pref="219" max="-2" attributes="0"/>
@@ -153,15 +153,15 @@
                                       </Group>
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabelConnection" min="-2" pref="100" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="fitHeight" min="-2" max="-2" attributes="0"/>
                                       <Component id="fitWidth" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="randomSura" min="-2" max="-2" attributes="0"/>
+                                      <Component id="randomSura" max="32767" attributes="0"/>
+                                      <Component id="jLabelConnection" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace pref="399" max="32767" attributes="0"/>
+                          <EmptySpace pref="403" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -213,6 +213,16 @@
                                               <Component id="suraRepeat" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
                                               <Component id="jLabel5" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
                                           </Group>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="ayaRepeat" alignment="0" min="-2" pref="42" max="-2" attributes="0"/>
+                                              <Component id="jLabel6" min="-2" pref="42" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="jLabel2" linkSize="1" alignment="0" min="-2" pref="28" max="-2" attributes="0"/>
+                                              <Component id="Delay" linkSize="1" max="32767" attributes="0"/>
+                                          </Group>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
@@ -225,18 +235,9 @@
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="randomSura" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
+                                          <Component id="jLabelConnection" min="-2" pref="70" max="-2" attributes="0"/>
                                       </Group>
-                                  </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="ayaRepeat" alignment="0" min="-2" pref="42" max="-2" attributes="0"/>
-                                      <Component id="jLabel6" min="-2" pref="42" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jLabel2" linkSize="1" alignment="0" min="-2" pref="28" max="-2" attributes="0"/>
-                                      <Component id="Delay" linkSize="1" alignment="3" max="32767" attributes="0"/>
-                                      <Component id="jLabelConnection" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -657,10 +658,10 @@
                 <Component class="javax.swing.JLabel" name="jLabelConnection">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="99" red="0" type="rgb"/>
+                      <Color blue="ff" green="99" id="textHighlight" palette="3" red="33" type="palette"/>
                     </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Tahoma" size="14" style="1"/>
+                      <Font name="Tahoma" size="24" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Connection"/>
                   </Properties>
@@ -698,7 +699,7 @@
                                   <Component id="randomReciter" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="460" max="32767" attributes="0"/>
+                          <EmptySpace pref="464" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -852,7 +853,7 @@
                               <Component id="downloadMode" pref="173" max="32767" attributes="0"/>
                               <Component id="mute" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="892" max="32767" attributes="0"/>
+                          <EmptySpace pref="896" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -987,7 +988,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="1592" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="1596" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -1009,7 +1010,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="1592" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="1596" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -1031,7 +1032,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="1592" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="1596" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -1056,7 +1057,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel3" min="-2" pref="168" max="-2" attributes="0"/>
-                          <EmptySpace pref="1414" max="32767" attributes="0"/>
+                          <EmptySpace pref="1418" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
