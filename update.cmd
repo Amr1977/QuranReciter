@@ -1,4 +1,4 @@
-@echo off
+rem @echo off
 set source=%~dp0\nbdist
 
 echo source: [%source%]
@@ -38,7 +38,7 @@ rem D:\google\ReciterDeploy\QuranReciterDeploy\Windows\32\reciter
 
 for %%x in (
 d:\reciter, 
-D:\Dropbox\QuranReciterDeploy\Windows\64\reciter , 
+D:\Dropbox\QuranReciterDeploy\Windows\64\reciter, 
 D:\Dropbox\QuranReciterDeploy\Windows\32\reciter, 
 D:\Dropbox\QuranReciterDeploy\Mac+Ubuntu\QuranReciter,
 D:\google\ReciterDeploy\QuranReciterDeploy\Windows\64\reciter,
@@ -46,9 +46,7 @@ D:\google\ReciterDeploy\QuranReciterDeploy\Windows\32\reciter,
 D:\google\ReciterDeploy\QuranReciterDeploy\Mac+Ubuntu\QuranReciter
 ) do (
    echo deploying on [%%x]
-   del %%x\QuranReciter.jar
-   RD /Q /S %%x\lib
-   copy /y %source%\*.* %%x\
+   xcopy /y /s %source%\*.* %%x
 )
 
 pause

@@ -22,6 +22,7 @@ import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 
 import test.BaseTest;
 /**
@@ -180,6 +181,7 @@ public class ReciterWindow extends javax.swing.JFrame {
     public ReciterWindow() {
         reciterWindow=this;
         initComponents();
+        this.setExtendedState(this.getExtendedState() | JFrame.MAXIMIZED_BOTH);
         connectivity();
         ReciterController.start();
         FreeTTS.MUTE=true;
@@ -1194,6 +1196,7 @@ public class ReciterWindow extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ReciterWindow().setVisible(true);
+                
             }
         });
     }
