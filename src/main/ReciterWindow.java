@@ -6,6 +6,8 @@
 
 package main;
 import common.Downloads;
+import common.Internet;
+import java.awt.Color;
 import javafx.embed.swing.JFXPanel;
 import logging.FreeTTS;
 import logging.Logging;
@@ -164,6 +166,13 @@ public class ReciterWindow extends javax.swing.JFrame {
             downloadMode.setSelected(ReciterModel.DOWNLOAD_ONLY);
             
             
+            if(!Internet.isConnected()){
+                jLabelConnection.setText("Offline");
+                jLabelConnection.setBackground(Color.RED);
+            }else{
+                jLabelConnection.setText("Online");
+                jLabelConnection.setBackground(Color.GREEN);
+            }
             
             }
         }
@@ -171,6 +180,7 @@ public class ReciterWindow extends javax.swing.JFrame {
     public ReciterWindow() {
         reciterWindow=this;
         initComponents();
+        connectivity();
         ReciterController.start();
         FreeTTS.MUTE=true;
         fitWidth.setSelected(true);
@@ -187,6 +197,33 @@ public class ReciterWindow extends javax.swing.JFrame {
             suraList.setListData(surasWithNumbers);
             recitersList.setListData(readersWithNumbers());
             refreshState();
+            
+           
+           
+    }
+    
+    public static void connectivity(){
+        Thread connectivityLabel = new Thread() {
+            @Override
+            public void run() {
+                while (true) {
+                    if (!Internet.isConnected()) {
+                        jLabelConnection.setText("Offline");
+                        jLabelConnection.setForeground(Color.RED);
+                    } else {
+                        jLabelConnection.setText("Online");
+                        jLabelConnection.setForeground(Color.GREEN);
+                    }
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(ReciterWindow.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        };
+           
+           connectivityLabel.start();
     }
 
     /**
@@ -229,6 +266,7 @@ public class ReciterWindow extends javax.swing.JFrame {
         fitHeight = new javax.swing.JCheckBox();
         fitWidth = new javax.swing.JCheckBox();
         randomSura = new javax.swing.JCheckBox();
+        jLabelConnection = new javax.swing.JLabel();
         recitersjPanel = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         recitersList = new javax.swing.JList();
@@ -515,6 +553,10 @@ public class ReciterWindow extends javax.swing.JFrame {
             }
         });
 
+        jLabelConnection.setBackground(new java.awt.Color(0, 153, 0));
+        jLabelConnection.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabelConnection.setText("Connection");
+
         javax.swing.GroupLayout rangeJPanelLayout = new javax.swing.GroupLayout(rangeJPanel);
         rangeJPanel.setLayout(rangeJPanelLayout);
         rangeJPanelLayout.setHorizontalGroup(
@@ -547,12 +589,7 @@ public class ReciterWindow extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(PAUSE, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(exit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(fitHeight)
-                                    .addComponent(fitWidth)
-                                    .addComponent(randomSura)))
+                                    .addComponent(exit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(rangeJPanelLayout.createSequentialGroup()
                                 .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -562,53 +599,21 @@ public class ReciterWindow extends javax.swing.JFrame {
                                 .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(Delay, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
                                     .addComponent(ayaRepeat)
-                                    .addComponent(suraRepeat))))))
-                .addContainerGap(325, Short.MAX_VALUE))
+                                    .addComponent(suraRepeat))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelConnection, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fitHeight)
+                            .addComponent(fitWidth)
+                            .addComponent(randomSura))))
+                .addContainerGap(399, Short.MAX_VALUE))
         );
         rangeJPanelLayout.setVerticalGroup(
             rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rangeJPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(rangeJPanelLayout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(rangeJPanelLayout.createSequentialGroup()
-                                .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(rangeJPanelLayout.createSequentialGroup()
-                                        .addComponent(suraRepeatForEver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(5, 5, 5)
-                                        .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(ayaRepeatForEver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(suraRepeat, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(rangeJPanelLayout.createSequentialGroup()
-                                        .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addGroup(rangeJPanelLayout.createSequentialGroup()
-                                                .addComponent(fitWidth)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(fitHeight))
-                                            .addComponent(PAUSE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(randomSura)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(ayaRepeat, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Delay))
-                                .addContainerGap(131, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rangeJPanelLayout.createSequentialGroup()
-                                .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane6))
-                                .addGap(108, 108, 108))))
-                    .addGroup(rangeJPanelLayout.createSequentialGroup()
+                .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, rangeJPanelLayout.createSequentialGroup()
                         .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -621,8 +626,45 @@ public class ReciterWindow extends javax.swing.JFrame {
                                 .addComponent(jScrollPane2))
                             .addGroup(rangeJPanelLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(jScrollPane1))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rangeJPanelLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(rangeJPanelLayout.createSequentialGroup()
+                                .addGap(11, 11, 11)
+                                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, rangeJPanelLayout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(rangeJPanelLayout.createSequentialGroup()
+                                .addComponent(suraRepeatForEver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(5, 5, 5)
+                                .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(ayaRepeatForEver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(suraRepeat, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(rangeJPanelLayout.createSequentialGroup()
+                                .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(rangeJPanelLayout.createSequentialGroup()
+                                        .addComponent(fitWidth)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(fitHeight))
+                                    .addComponent(PAUSE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(randomSura)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ayaRepeat, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Delay)
+                            .addComponent(jLabelConnection, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(154, Short.MAX_VALUE))
         );
 
         rangeJPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {Delay, PAUSE, ayaRepeatForEver, jLabel2, suraRepeatForEver});
@@ -709,7 +751,7 @@ public class ReciterWindow extends javax.swing.JFrame {
                     .addGroup(recitersjPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(randomReciter)))
-                .addContainerGap(382, Short.MAX_VALUE))
+                .addContainerGap(460, Short.MAX_VALUE))
         );
         recitersjPanelLayout.setVerticalGroup(
             recitersjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -722,7 +764,7 @@ public class ReciterWindow extends javax.swing.JFrame {
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(randomReciter)
-                .addGap(0, 151, Short.MAX_VALUE))
+                .addGap(0, 180, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Reciters", recitersjPanel);
@@ -793,7 +835,7 @@ public class ReciterWindow extends javax.swing.JFrame {
                     .addComponent(rabbaniVerseRepeatCount)
                     .addComponent(downloadMode, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
                     .addComponent(mute, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(814, Short.MAX_VALUE))
+                .addContainerGap(892, Short.MAX_VALUE))
         );
         modesjPanelLayout.setVerticalGroup(
             modesjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -809,7 +851,7 @@ public class ReciterWindow extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(modesjPanelLayout.createSequentialGroup()
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 135, Short.MAX_VALUE))
+                .addGap(0, 164, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Modes", modesjPanel);
@@ -818,11 +860,11 @@ public class ReciterWindow extends javax.swing.JFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1514, Short.MAX_VALUE)
+            .addGap(0, 1592, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 453, Short.MAX_VALUE)
+            .addGap(0, 482, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Tafseer", jPanel5);
@@ -831,11 +873,11 @@ public class ReciterWindow extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1514, Short.MAX_VALUE)
+            .addGap(0, 1592, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 453, Short.MAX_VALUE)
+            .addGap(0, 482, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Log", jPanel1);
@@ -844,11 +886,11 @@ public class ReciterWindow extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1514, Short.MAX_VALUE)
+            .addGap(0, 1592, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 453, Short.MAX_VALUE)
+            .addGap(0, 482, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Console", jPanel2);
@@ -870,14 +912,14 @@ public class ReciterWindow extends javax.swing.JFrame {
             .addGroup(aboutJPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1336, Short.MAX_VALUE))
+                .addContainerGap(1414, Short.MAX_VALUE))
         );
         aboutJPanelLayout.setVerticalGroup(
             aboutJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(aboutJPanelLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(408, Short.MAX_VALUE))
+                .addContainerGap(437, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("About", aboutJPanel);
@@ -1176,6 +1218,7 @@ public class ReciterWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    public static javax.swing.JLabel jLabelConnection;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel5;

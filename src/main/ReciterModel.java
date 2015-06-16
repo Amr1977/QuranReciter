@@ -168,18 +168,19 @@ public class ReciterModel {
     public static String[] mashayekh;
 
     static {
-        Runtime.getRuntime().addShutdownHook(new Thread() {
-            @Override
-            public void run() {
-                try {
-                    Logging.log("ShutdownHook: saving state...", 1);
-                    ReciterModel.saveState();
-                } catch (IOException e) {
-                    recordStackTrace(e);
-                    Logging.log(e);
-                }
-            }
-        });
+        Runtime.getRuntime().addShutdownHook(
+                new Thread() {
+                    @Override
+                    public void run() {
+                        try {
+                            Logging.log("ShutdownHook: saving state...", 1);
+                            ReciterModel.saveState();
+                        } catch (IOException e) {
+                            recordStackTrace(e);
+                            Logging.log(e);
+                        }
+                    }
+                });
         mashayekh = arrayListToArray(TextFiles.load(baseFolder + "readers.txt"));
         //handle if file not found
         if (mashayekh == null || mashayekh.length == 0) {
@@ -380,6 +381,10 @@ public class ReciterModel {
     MenuItem pauseItem;
     Image trayIconImage;
 
+    
+    static public void refreshState(){
+        ReciterWindow.refreshState();
+    }
 	//static Downloader  downloader=null;
     public static void saveState() throws IOException {
         ArrayList<String> lines = new ArrayList<>();
@@ -646,59 +651,64 @@ public class ReciterModel {
         Downloads.downloadsPause(false);
     }
     
-    public static void readAya(int sheik, int sura, int aya) {
-            //download ahead entries insertion
-        //TODO fix this
-        //TODO handle immediate shutdown (create a folder with a separate 
-        //text file for each file being downloaded and erase file after 
-        //download complete, name files randomly)
-        //maybe we could use sqlite db
-        Logging.log("readAya: sheik:[" + sheik + "], sura: [" + sura + "], aya:[" + aya + "]");
-        
-        downloadVersesAhead();
-
-        if (!DOWNLOAD_ONLY) {
-            try {
-                String fileName = baseFolder + "mp3" + File.separator + mashayekh[sheik] + File.separator + leadingZeros(sura, 3) + File.separator + leadingZeros(sura, 3) + leadingZeros(aya, 3) + ".mp3";
+    public static boolean readAya(int sheik, int sura, int aya) {
+        try {
+            String fileName = baseFolder + "mp3" + File.separator + mashayekh[(Downloads.isConnected()? sheik:0 )] + File.separator + leadingZeros(sura, 3) + File.separator + leadingZeros(sura, 3) + leadingZeros(aya, 3) + ".mp3";
+            boolean result = true;
+            int fallBackSheik=0;
+            String alternateAyaFile=fileName;
+            //TODO fix this
+            Logging.log("readAya: sheik:[" +  (Downloads.isConnected()? sheik:0 ) + "], sura: [" + sura + "], aya:[" + aya + "]");
+            //TODO handle internet disconnect
+            downloadVersesAhead();
+            
+            
+            if (!DOWNLOAD_ONLY) {
+                
+                
                 Logging.log("Waiting for file to Download: " + fileName);
                 while (Downloads.isInQueue(fileName) && !(AYA_CHANGE || SURA_CHANGE)) {
                     Thread.sleep(10);
                 }
                 if (AYA_CHANGE || SURA_CHANGE) {
-                    return;
+                    return result;
                 }
                 Logging.log("Waiting completed: " + fileName);
                 while (Sound.isPLAYING()) {
                     Thread.sleep(10);
                 }
-                while(true){
-                try{
-                    Sound.playMp3(fileName);
-                    break;
-                }catch(Exception e){
-                    Logging.log("Error playing file: ["+fileName+"] file will be deleted.");
-                    Thread.sleep(500);
-                    if (new File(fileName).delete()){
-                        Logging.log("Deleted file: "+fileName);
-                    }else{
-                        Logging.log("Error Deleting file: "+fileName);
+                
+                    try {
+                        
+                        Sound.playMp3(fileName);
+                        
+                        
+                    } catch (Exception e) {
+                        result=false;
+                        Thread.sleep(1000);
+                        Logging.log("Error playing file: [" + fileName + "] file will be deleted.");
+                        if (new File(fileName).delete()) {
+                            Logging.log("Deleted file: " + fileName);
+                        } else {
+                            Logging.log("Error Deleting file: " + fileName);
+                        }
+
+                        downloadVersesAhead();
+                        //should break if sura/aya/reciter changed
+                        if (reciterChanged || AYA_CHANGE || SURA_CHANGE) {
+                            Logging.log("Breaking[5]");
+                          
+                        }
                     }
-                    downloadVersesAhead();
-                    //should break if sura/aya/reciter changed
-                    if (reciterChanged || AYA_CHANGE || SURA_CHANGE ){
-                        Logging.log("Breaking[5]");
-                        break;
-                    }
-                    }    
-                }
                 
                 
-                saveState();
-            } catch (Exception e) {
-                // TODO Auto-generated catch block
-                Logging.log(e);
             }
+            saveState();
+            return result;
+        } catch (Exception e) {
+            Logging.log("catched [777]");
         }
+        return false;
     }
 
     public static void recordStackTrace(Exception e) {
@@ -752,7 +762,7 @@ public class ReciterModel {
                     if (SURA_CHANGE) {
                         break;
                     }
-                    ReciterWindow.refreshState();
+                    refreshState();
 
                 }
                 if (EXIT) {
@@ -808,7 +818,7 @@ public class ReciterModel {
                             if (SURA_CHANGE) {
                                 break;
                             }
-                            ReciterWindow.refreshState();
+                            refreshState();
 
                         }
                         if (EXIT) {
@@ -839,7 +849,7 @@ public class ReciterModel {
                         //int randomReader=( ((currentMode==0)) ? reciter : (rReciter.nextInt(mashayekh.length-1)+1));
 
                         Logging.log("reciter: #[" + reciter + "] " + mashayekh[reciter] + ", aya repeat : " + k + "/" + ayaRepeatCount);
-                        ReciterWindow.refreshState();
+                        refreshState();
 
                         if (AYA_CHANGE) {
                             AYA_CHANGE = false;
@@ -855,7 +865,7 @@ public class ReciterModel {
                         if (reciterChanged){
                             reciterChanged=false;
                         }
-                        //ReciterWindow.refreshState();
+                        //refreshState();
                         try {
                             readAya(reciter, sura, aya);
                             ayaCount++;
@@ -863,7 +873,7 @@ public class ReciterModel {
                             Logging.log("Error reading reciter=" + reciter + ", sura=" + sura + ", aya=" + aya);
                         }
                         Logging.log("");
-                        ReciterWindow.refreshState();
+                        refreshState();
                     }
                 }
                 if (!SURA_CHANGE) {
@@ -1228,6 +1238,7 @@ public class ReciterModel {
             case "x":
             case "quit":
             case "q":
+                System.exit(0);
                 Logging.log("Exiting ... ", 1);
                 EXIT = true;
                 break;
@@ -1384,7 +1395,7 @@ public class ReciterModel {
                 Logging.log("unknown command [" + command + "]", 1);
 
         }
-        ReciterWindow.refreshState();
+        refreshState();
     }
 
     public static void shell() {
