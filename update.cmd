@@ -46,6 +46,7 @@ D:\google\ReciterDeploy\QuranReciterDeploy\Windows\32\reciter,
 D:\google\ReciterDeploy\QuranReciterDeploy\Mac+Ubuntu\QuranReciter
 ) do (
    echo deploying on [%%x]
+   del %source%\readme.txt
    xcopy /y /s %source%\*.* %%x
 )
 
