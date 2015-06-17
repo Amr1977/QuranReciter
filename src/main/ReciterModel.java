@@ -1,6 +1,7 @@
 package main;
 
 import common.Downloads;
+import common.Internet;
 import common.Sound;
 import static common.Sound.getMediaPlayer;
 import java.awt.Image;
@@ -384,6 +385,7 @@ public class ReciterModel {
     
     static public void refreshState(){
         ReciterWindow.refreshState();
+        Logging.log("RefreshState called.");
     }
 	//static Downloader  downloader=null;
     public static void saveState() throws IOException {
@@ -652,22 +654,39 @@ public class ReciterModel {
     }
     
     public static boolean readAya(int sheik, int sura, int aya) {
+        boolean result = false;
+        String fileName = baseFolder + "mp3" + File.separator + mashayekh[sheik] + File.separator + leadingZeros(sura, 3) + File.separator + leadingZeros(sura, 3) + leadingZeros(aya, 3) + ".mp3";
+        if ((!(new File(fileName).exists()))&&(!Internet.isConnected())){
+            //try to find another valid file
+            for (int i = 0; i < mashayekh.length; i++) {
+                //should break if sura/aya/reciter changed
+                if (reciterChanged || AYA_CHANGE || SURA_CHANGE) {
+                    Logging.log("Breaking[5]");
+                }
+                fileName = baseFolder + "mp3" + File.separator + mashayekh[i] + File.separator + leadingZeros(sura, 3) + File.separator + leadingZeros(sura, 3) + leadingZeros(aya, 3) + ".mp3";
+                if (new File(fileName).exists()) {
+                    if (readAya(i, sura, aya)) {
+                        Logging.log("changed Reciter to be: [" + i + "] sheikh: " + mashayekh[i]);
+                        reciter = i;
+                        reciterChanged = true;
+                        refreshState();
+                        result = true;
+                        return result;
+                        
+                    }
+                }
+            }
+        }
         try {
-            String fileName = baseFolder + "mp3" + File.separator + mashayekh[(Downloads.isConnected()? sheik:0 )] + File.separator + leadingZeros(sura, 3) + File.separator + leadingZeros(sura, 3) + leadingZeros(aya, 3) + ".mp3";
-            boolean result = true;
-            int fallBackSheik=0;
-            String alternateAyaFile=fileName;
             //TODO fix this
-            Logging.log("readAya: sheik:[" +  (Downloads.isConnected()? sheik:0 ) + "], sura: [" + sura + "], aya:[" + aya + "]");
+            Logging.log("readAya: sheik:[" + sheik + "], sura: [" + sura + "], aya:[" + aya + "]");
             //TODO handle internet disconnect
             downloadVersesAhead();
-            
-            
+
             if (!DOWNLOAD_ONLY) {
-                
-                
+
                 Logging.log("Waiting for file to Download: " + fileName);
-                while (Downloads.isInQueue(fileName) && !(AYA_CHANGE || SURA_CHANGE)) {
+                while (Internet.isConnected() && Downloads.isInQueue(fileName) && !(AYA_CHANGE || SURA_CHANGE)) {
                     Thread.sleep(10);
                 }
                 if (AYA_CHANGE || SURA_CHANGE) {
@@ -677,38 +696,48 @@ public class ReciterModel {
                 while (Sound.isPLAYING()) {
                     Thread.sleep(10);
                 }
-                
-                    try {
-                        
-                        Sound.playMp3(fileName);
-                        
-                        
-                    } catch (Exception e) {
-                        result=false;
-                        Thread.sleep(1000);
-                        Logging.log("Error playing file: [" + fileName + "] file will be deleted.");
-                        if (new File(fileName).delete()) {
-                            Logging.log("Deleted file: " + fileName);
-                        } else {
-                            Logging.log("Error Deleting file: " + fileName);
-                        }
+                result=Sound.playMp3(fileName);
+                saveState();
+            }
+            
+        } catch (Exception e) {
+           result=false;
+        }
+        if (!result){
+             //clean up the invalid audio file
+            Logging.log("Error playing file: [" + fileName + "] file will be deleted.");
+            if (new File(fileName).delete()) {
+                Logging.log("Deleted file: " + fileName);
+            } else {
+                Logging.log("Error Deleting file: " + fileName);
+            }
 
-                        downloadVersesAhead();
-                        //should break if sura/aya/reciter changed
-                        if (reciterChanged || AYA_CHANGE || SURA_CHANGE) {
-                            Logging.log("Breaking[5]");
-                          
+            //try to find another valid file
+            if (!Internet.isConnected()) {
+                for (int i = 0; i < mashayekh.length; i++) {
+                    //should break if sura/aya/reciter changed
+                    if (reciterChanged || AYA_CHANGE || SURA_CHANGE) {
+                        Logging.log("Breaking[5]");
+                    }
+                    fileName = baseFolder + "mp3" + File.separator + mashayekh[i] + File.separator + leadingZeros(sura, 3) + File.separator + leadingZeros(sura, 3) + leadingZeros(aya, 3) + ".mp3";
+                    if (new File(fileName).exists()) {
+                        if (readAya(i, sura, aya)) {
+                            Logging.log("changed Reciter to be: [" + i + "] sheikh: " + mashayekh[i]);
+                            reciter = i;
+                            reciterChanged = true;
+                            refreshState();
+                            result = true;
+                            break;
                         }
                     }
-                
-                
+
+                }
             }
-            saveState();
-            return result;
-        } catch (Exception e) {
+
+            downloadVersesAhead();
             Logging.log("catched [777]");
         }
-        return false;
+        return result;
     }
 
     public static void recordStackTrace(Exception e) {
@@ -760,11 +789,13 @@ public class ReciterModel {
                 while (PAUSE && (!EXIT)) {
                     Thread.sleep(1000);
                     if (SURA_CHANGE) {
+                        
                         break;
                     }
-                    refreshState();
+                    
 
                 }
+                refreshState();
                 if (EXIT) {
                     System.exit(0);
                 } 
@@ -818,9 +849,10 @@ public class ReciterModel {
                             if (SURA_CHANGE) {
                                 break;
                             }
-                            refreshState();
+                            
 
                         }
+                        refreshState();
                         if (EXIT) {
                             System.exit(0);
                         }
