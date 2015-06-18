@@ -33,7 +33,8 @@ import logging.FreeTTS;
 //TODO mode 4 add mode each reciter reads complete sura,others read same sura afterwards
 //TODO mode 5 add mode each reciter reads complete sura,others read next suras afterwards
 public class ReciterModel {
-    private static boolean viewNeedsRefresh=false;
+
+    private static boolean viewNeedsRefresh = false;
     public static boolean RESTORED_STATE = false;
     public static int NORMAL_MODE = 0;
     public static int RABANI_MODE = 1;
@@ -382,12 +383,13 @@ public class ReciterModel {
     MenuItem pauseItem;
     Image trayIconImage;
 
-    
-    static public void refreshState(){
+    static public void refreshState() {
         ReciterWindow.refreshState();
         Logging.log("RefreshState called.");
     }
-	//static Downloader  downloader=null;
+
+    //static Downloader  downloader=null;
+
     public static void saveState() throws IOException {
         ArrayList<String> lines = new ArrayList<>();
         //sheikh, sura, aya
@@ -410,12 +412,13 @@ public class ReciterModel {
         lines.add("random_delay=" + (rabbaniDelay ? "1" : "0"));
         lines.add("speech=" + (speech ? "1" : "0"));
         lines.add("download_ahead_count=" + downloadAheadLength.toString());
-		//DOWNLOAD_ONLY
+        //DOWNLOAD_ONLY
         //REPEAT_FOREVER
 
         TextFiles.save(lines, baseFolder + "reciter-state.txt");
         Logging.log("states saved.");
     }
+
     public static void setDefaultState() {
         reciterName = mashayekh[0];
         reciter = 0;
@@ -438,6 +441,7 @@ public class ReciterModel {
         RESTORED_STATE = true;
         Logging.log("Restored Default state.");
     }
+
     public static void restoreState(int state) throws Exception {
         //TODO validate restored values !
         if (state == 0) {//fatiha
@@ -549,17 +553,19 @@ public class ReciterModel {
         }
         downloadAyat(number, sura, 1, ayatCount[sura]);
     }
+
     /**
      * appends to the end of download queue
+     *
      * @param sheikhID
      * @param sura
      * @param startAya
-     * @param endAya 
+     * @param endAya
      */
     public static void downloadAyat(int sheikhID, int sura, int startAya, int endAya) {
-        downloadAyat( sheikhID,  sura,  startAya,  endAya,  false);
+        downloadAyat(sheikhID, sura, startAya, endAya, false);
     }
-    
+
     public static void downloadAyat(int sheikhID, int sura, int startAya, int endAya, boolean inQueueHead) {
         Logging.log("downloadAyat: sheik: " + sheikhID + " sura[" + sura + "] startAya[" + startAya + "] edAya[" + endAya + "]");
         if (endAya > ayatCount[sura]) {
@@ -568,69 +574,64 @@ public class ReciterModel {
         if (startAya > ayatCount[sura]) {
             startAya = 1;
         }
-        
-        Logging.log("inQueueHead: "+inQueueHead);
-        if (!inQueueHead){
-            for (int aya = startAya ;  aya <= endAya; aya++ ) {
-            String foldername = baseFolder + "mp3" + File.separator + mashayekh[sheikhID] + File.separator + leadingZeros(sura, 3);
-            String filename = baseFolder + "mp3" + File.separator + mashayekh[sheikhID] + File.separator + leadingZeros(sura, 3) + File.separator + leadingZeros(sura, 3) + leadingZeros(aya, 3) + ".mp3";
-            String fileUrl = "http://www.everyayah.com/data/" + mashayekh[sheikhID] + "/" + leadingZeros(sura, 3) + leadingZeros(aya, 3) + ".mp3";
-            try {
-                new File(foldername).mkdirs();
-            } catch (Exception e) {
-                Logging.log("Can't create folder [" + foldername + "]");
-                Logging.log(e);
 
-            }
+        Logging.log("inQueueHead: " + inQueueHead);
+        if (!inQueueHead) {
+            for (int aya = startAya; aya <= endAya; aya++) {
+                String foldername = baseFolder + "mp3" + File.separator + mashayekh[sheikhID] + File.separator + leadingZeros(sura, 3);
+                String filename = baseFolder + "mp3" + File.separator + mashayekh[sheikhID] + File.separator + leadingZeros(sura, 3) + File.separator + leadingZeros(sura, 3) + leadingZeros(aya, 3) + ".mp3";
+                String fileUrl = "http://www.everyayah.com/data/" + mashayekh[sheikhID] + "/" + leadingZeros(sura, 3) + leadingZeros(aya, 3) + ".mp3";
+                try {
+                    new File(foldername).mkdirs();
+                } catch (Exception e) {
+                    Logging.log("Can't create folder [" + foldername + "]");
+                    Logging.log(e);
 
-            try {
-                Downloads.add(fileUrl, filename,inQueueHead);
-            } catch (Exception e) {
-                // TODO what if Internet not available
-
-                File f = new File(filename);
-                if (f.isFile()) {
-                    f.delete();
                 }
-                Logging.log(e);
-            }
-            
-        }
-        }else{
-            for (int aya = endAya ;  aya >= startAya; aya-- ) {
-            String foldername = baseFolder + "mp3" + File.separator + mashayekh[sheikhID] + File.separator + leadingZeros(sura, 3);
-            String filename = baseFolder + "mp3" + File.separator + mashayekh[sheikhID] + File.separator + leadingZeros(sura, 3) + File.separator + leadingZeros(sura, 3) + leadingZeros(aya, 3) + ".mp3";
-            String fileUrl = "http://www.everyayah.com/data/" + mashayekh[sheikhID] + "/" + leadingZeros(sura, 3) + leadingZeros(aya, 3) + ".mp3";
-            try {
-                new File(foldername).mkdirs();
-            } catch (Exception e) {
-                Logging.log("Can't create folder [" + foldername + "]");
-                Logging.log(e);
 
-            }
+                try {
+                    Downloads.add(fileUrl, filename, inQueueHead);
+                } catch (Exception e) {
+                    // TODO what if Internet not available
 
-            try {
-                Downloads.add(fileUrl, filename,inQueueHead);
-                //Logging.log("Download Queue entry added: "+fileUrl);
-            } catch (Exception e) {
-                // TODO what if Internet not available
-
-                File f = new File(filename);
-                if (f.isFile()) {
-                    f.delete();
+                    File f = new File(filename);
+                    if (f.isFile()) {
+                        f.delete();
+                    }
+                    Logging.log(e);
                 }
-                Logging.log(e);
+
             }
-            
+        } else {
+            for (int aya = endAya; aya >= startAya; aya--) {
+                String foldername = baseFolder + "mp3" + File.separator + mashayekh[sheikhID] + File.separator + leadingZeros(sura, 3);
+                String filename = baseFolder + "mp3" + File.separator + mashayekh[sheikhID] + File.separator + leadingZeros(sura, 3) + File.separator + leadingZeros(sura, 3) + leadingZeros(aya, 3) + ".mp3";
+                String fileUrl = "http://www.everyayah.com/data/" + mashayekh[sheikhID] + "/" + leadingZeros(sura, 3) + leadingZeros(aya, 3) + ".mp3";
+                try {
+                    new File(foldername).mkdirs();
+                } catch (Exception e) {
+                    Logging.log("Can't create folder [" + foldername + "]");
+                    Logging.log(e);
+
+                }
+
+                try {
+                    Downloads.add(fileUrl, filename, inQueueHead);
+                    //Logging.log("Download Queue entry added: "+fileUrl);
+                } catch (Exception e) {
+                    // TODO what if Internet not available
+
+                    File f = new File(filename);
+                    if (f.isFile()) {
+                        f.delete();
+                    }
+                    Logging.log(e);
+                }
+
+            }
         }
-        }
-        
-        
+
     }
-
-   
-
-   
 
     public static Verse getVerseAhead(int currentSura, int currentAya, int count) {
         if ((count + currentAya) <= ayatCount[currentSura]) {
@@ -640,23 +641,23 @@ public class ReciterModel {
             return getVerseAhead(nextSura, 1, ((currentAya + count - 1) - ayatCount[currentSura]));
         }
     }
-    
-    public static void downloadVersesAhead(){
+
+    public static void downloadVersesAhead() {
         int sheik = reciter;
         int sura1 = sura;
-        int aya=currentAya;
+        int aya = currentAya;
         Downloads.downloadsPause(true);
         for (int i = 0; i <= downloadAheadLength; i++) {
-            Verse verse = getVerseAhead(sura1, aya, downloadAheadLength-i);
-            downloadAyat(sheik, verse.getSuraNumber(), verse.getVerseNumber(), verse.getVerseNumber(),!DOWNLOAD_ONLY);
+            Verse verse = getVerseAhead(sura1, aya, downloadAheadLength - i);
+            downloadAyat(sheik, verse.getSuraNumber(), verse.getVerseNumber(), verse.getVerseNumber(), !DOWNLOAD_ONLY);
         }
         Downloads.downloadsPause(false);
     }
-    
+
     public static boolean readAya(int sheik, int sura, int aya) {
         boolean result = false;
         String fileName = baseFolder + "mp3" + File.separator + mashayekh[sheik] + File.separator + leadingZeros(sura, 3) + File.separator + leadingZeros(sura, 3) + leadingZeros(aya, 3) + ".mp3";
-        if ((!(new File(fileName).exists()))&&(!Internet.isConnected())){
+        if ((!(new File(fileName).exists())) && (!Internet.isConnected())) {
             //try to find another valid file
             for (int i = 0; i < mashayekh.length; i++) {
                 //should break if sura/aya/reciter changed
@@ -672,7 +673,7 @@ public class ReciterModel {
                         refreshState();
                         result = true;
                         return result;
-                        
+
                     }
                 }
             }
@@ -696,15 +697,15 @@ public class ReciterModel {
                 while (Sound.isPLAYING()) {
                     Thread.sleep(10);
                 }
-                result=Sound.playMp3(fileName);
+                result = Sound.playMp3(fileName);
                 saveState();
             }
-            
+
         } catch (Exception e) {
-           result=false;
+            result = false;
         }
-        if (!result){
-             //clean up the invalid audio file
+        if (!result) {
+            //clean up the invalid audio file
             Logging.log("Error playing file: [" + fileName + "] file will be deleted.");
             if (new File(fileName).delete()) {
                 Logging.log("Deleted file: " + fileName);
@@ -747,7 +748,6 @@ public class ReciterModel {
     }
 
     public static void simpleReader() throws Exception {
-        
 
         new File(baseFolder + "log").mkdirs();
         Logging.setLogFile(baseFolder + "log" + File.separator + Logging.getTimeStamp() + ".txt");
@@ -780,27 +780,25 @@ public class ReciterModel {
 
                 Logging.log("Sura repeat number " + repeatSura + " of " + groupRepeatCount, 1);
 
-				//add basmalla
+                //add basmalla
                 if (SURA_CHANGE) {
-                    SURA_CHANGE=false;
+                    SURA_CHANGE = false;
                     Logging.log("Breaking[0]");
                     break;
                 }
                 while (PAUSE && (!EXIT)) {
                     Thread.sleep(1000);
                     if (SURA_CHANGE) {
-                        
+
                         break;
                     }
-                    
 
                 }
                 refreshState();
                 if (EXIT) {
                     System.exit(0);
-                } 
-                
-                            
+                }
+
                 if ((sura != 9) && (sura != 1)) {
                     //ayaLabel.setIcon(getAyaImage(1, 1));
                     readAya(reciter, 1, 1);
@@ -812,7 +810,7 @@ public class ReciterModel {
                         aya = currentAya;
                         justStarted = false;
                     } else {
-                        
+
                         if (SURA_CHANGE) {
                             //SURA_CHANGE = false;
                             ayaStart = 1;
@@ -830,26 +828,19 @@ public class ReciterModel {
                         }
                     }
                     Logging.log("Aya number " + currentAya, 1);
-                    
+
                     if (currentMode == 1) {
                         ayaRepeatCount = rRepeat.nextInt(7) + 1;
                     } else if (currentMode == 2) {
                         ayaRepeatCount = mashayekh.length;
                     }
-                    if (showImages) {
-                        try {
-                            BaseTest.executer("cmd", "/c start /max " + baseFolder + "images" + File.separator + sura + "_" + currentAya + ".png");
-                        } catch (IOException e) {
-                            Logging.log(e);
-                        }
-                    }
+
                     for (int k = 1; ((k <= ayaRepeatCount) || (AYA_REPEAT_FOREVER)) && (!AYA_CHANGE); k++) {
                         while (PAUSE && (!EXIT)) {
                             Thread.sleep(1000);
                             if (SURA_CHANGE) {
                                 break;
                             }
-                            
 
                         }
                         refreshState();
@@ -857,11 +848,11 @@ public class ReciterModel {
                             System.exit(0);
                         }
                         if (SURA_CHANGE) {
-                            SURA_CHANGE=false;
+                            SURA_CHANGE = false;
                             Logging.log("Breaking[10]");
                             break;
                         }
-                        
+
                         if (currentMode == 1) {
                             ayaWait = rWait.nextInt(40000) + 1;
                         }
@@ -894,8 +885,8 @@ public class ReciterModel {
                             Logging.log("Breaking[2]");
                             break;
                         }
-                        if (reciterChanged){
-                            reciterChanged=false;
+                        if (reciterChanged) {
+                            reciterChanged = false;
                         }
                         //refreshState();
                         try {
@@ -909,27 +900,26 @@ public class ReciterModel {
                     }
                 }
                 if (!SURA_CHANGE) {
-                if (((currentMode == 0) || (currentMode == 2) || (currentMode == 3)) && (!raabbaniSura)) {
-                    sura += 1;
-                    if (sura > 114) {
-                        sura = 1;
+                    if (!SURA_REPEAT_FOREVER) {
+                        if (((currentMode == 0) || (currentMode == 2) || (currentMode == 3)) && (!raabbaniSura)) {
+                            sura += 1;
+                            if (sura > 114) {
+                                sura = 1;
+                            }
+                        } else {
+                            sura = rSura.nextInt(114) + 1;
+                        }
+                        ayaStart = 1;
+                        ayaEnd = ayatCount[sura];
+                        Logging.log("Going to sura: " + Sura_Name[sura], 1);
+                    }
+                    if (rabbaniReciter) {
+                        reciter = rReciter.nextInt(mashayekh.length - 1) + 1;
                     }
                 } else {
-                    sura = rSura.nextInt(114) + 1;
+                    SURA_CHANGE = false;
                 }
-                if (rabbaniReciter) {
-                    reciter = rReciter.nextInt(mashayekh.length - 1) + 1;
-                }
-                ayaStart = 1;
-                ayaEnd = ayatCount[sura];
-                Logging.log("Going to next sura: " + Sura_Name[sura], 1);
-
-            } 
-            else {
-                SURA_CHANGE = false;
             }
-            }
-            
 
         }
     }
@@ -979,7 +969,7 @@ public class ReciterModel {
                     reciter = Integer.valueOf(terms[1]);
                     Logging.log("Reciter set to [" + mashayekh[reciter] + "]", 1);
                     downloadVersesAhead();
-                    reciterChanged=true;
+                    reciterChanged = true;
                 } catch (Exception e) {
                     Logging.log(e);
                 }
@@ -1391,7 +1381,7 @@ public class ReciterModel {
 
                 break;
             case "split":
-			//get current position and record it in a text file with same name but with another extension
+                //get current position and record it in a text file with same name but with another extension
                 //TODO
                 /**
                  * get current read position save to time splitting file
