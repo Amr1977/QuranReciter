@@ -290,12 +290,15 @@ public class ReciterWindow extends javax.swing.JFrame {
         rabbaniVerseRepeatCount = new javax.swing.JCheckBox();
         downloadMode = new javax.swing.JToggleButton();
         mute = new javax.swing.JToggleButton();
-        jPanel5 = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        jPanelTafseer = new javax.swing.JPanel();
+        jPanelLog = new javax.swing.JPanel();
+        jPanelConsole = new javax.swing.JPanel();
+        jPanelDownloadQueue = new javax.swing.JPanel();
+        jPanelUpdate = new javax.swing.JPanel();
+        jButton2 = new javax.swing.JButton();
+        jCheckBox1 = new javax.swing.JCheckBox();
         aboutJPanel = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Quran Reciter");
@@ -870,44 +873,95 @@ public class ReciterWindow extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Modes", modesjPanel);
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelTafseer.setEnabled(false);
+
+        javax.swing.GroupLayout jPanelTafseerLayout = new javax.swing.GroupLayout(jPanelTafseer);
+        jPanelTafseer.setLayout(jPanelTafseerLayout);
+        jPanelTafseerLayout.setHorizontalGroup(
+            jPanelTafseerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 1624, Short.MAX_VALUE)
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelTafseerLayout.setVerticalGroup(
+            jPanelTafseerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 482, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Tafseer", jPanel5);
+        jTabbedPane1.addTab("Tafseer", jPanelTafseer);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelLog.setEnabled(false);
+
+        javax.swing.GroupLayout jPanelLogLayout = new javax.swing.GroupLayout(jPanelLog);
+        jPanelLog.setLayout(jPanelLogLayout);
+        jPanelLogLayout.setHorizontalGroup(
+            jPanelLogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 1624, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelLogLayout.setVerticalGroup(
+            jPanelLogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 482, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Log", jPanel1);
+        jTabbedPane1.addTab("Log", jPanelLog);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelConsole.setEnabled(false);
+
+        javax.swing.GroupLayout jPanelConsoleLayout = new javax.swing.GroupLayout(jPanelConsole);
+        jPanelConsole.setLayout(jPanelConsoleLayout);
+        jPanelConsoleLayout.setHorizontalGroup(
+            jPanelConsoleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 1624, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelConsoleLayout.setVerticalGroup(
+            jPanelConsoleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 482, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Console", jPanel2);
+        jTabbedPane1.addTab("Console", jPanelConsole);
+
+        jPanelDownloadQueue.setEnabled(false);
+
+        javax.swing.GroupLayout jPanelDownloadQueueLayout = new javax.swing.GroupLayout(jPanelDownloadQueue);
+        jPanelDownloadQueue.setLayout(jPanelDownloadQueueLayout);
+        jPanelDownloadQueueLayout.setHorizontalGroup(
+            jPanelDownloadQueueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1624, Short.MAX_VALUE)
+        );
+        jPanelDownloadQueueLayout.setVerticalGroup(
+            jPanelDownloadQueueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 482, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Download Queue", jPanelDownloadQueue);
+
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton2.setText("Restart application to Update");
+        jButton2.setEnabled(false);
+
+        jCheckBox1.setText("Download Updates automatically");
+        jCheckBox1.setEnabled(false);
+
+        javax.swing.GroupLayout jPanelUpdateLayout = new javax.swing.GroupLayout(jPanelUpdate);
+        jPanelUpdate.setLayout(jPanelUpdateLayout);
+        jPanelUpdateLayout.setHorizontalGroup(
+            jPanelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelUpdateLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCheckBox1)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(1341, Short.MAX_VALUE))
+        );
+        jPanelUpdateLayout.setVerticalGroup(
+            jPanelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelUpdateLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jCheckBox1)
+                .addGap(18, 18, 18)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(352, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Update", jPanelUpdate);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/fb.png"))); // NOI18N
@@ -937,19 +991,6 @@ public class ReciterWindow extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("About", aboutJPanel);
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1624, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 482, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Download Queue", jPanel3);
 
         jScrollPane10.setViewportView(jTabbedPane1);
 
@@ -1238,6 +1279,8 @@ public class ReciterWindow extends javax.swing.JFrame {
     public static javax.swing.JCheckBox fitHeight;
     public static javax.swing.JCheckBox fitWidth;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -1247,10 +1290,11 @@ public class ReciterWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     public static javax.swing.JLabel jLabelConnection;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanelConsole;
+    private javax.swing.JPanel jPanelDownloadQueue;
+    private javax.swing.JPanel jPanelLog;
+    private javax.swing.JPanel jPanelTafseer;
+    private javax.swing.JPanel jPanelUpdate;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane2;
