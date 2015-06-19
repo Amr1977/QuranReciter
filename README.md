@@ -11,6 +11,6 @@ You can control memorization as follow:
 
 MP3 are streamed as needed and stored locally for repeated use.
 
-currently only windows is supported but I am considering to make it support ubuntu as soon as I can inshallah.
+Windows and Mac supported, not tested yet on Linux.
 
 
