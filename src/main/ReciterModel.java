@@ -876,7 +876,11 @@ public class ReciterModel {
 
                         if (AYA_CHANGE) {
                             AYA_CHANGE = false;
-                            break;
+                            if (currentAya <= ayatCount[sura]) {
+                                aya = currentAya;
+                            }
+                        } else {
+                            currentAya = aya;
                         }
 
                         if (SURA_CHANGE) {
