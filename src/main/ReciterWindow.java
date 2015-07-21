@@ -49,6 +49,7 @@ public class ReciterWindow extends javax.swing.JFrame {
 //TODO fix this bug, unmber is not 11
         
         public static ImageIcon getAyaImage(int sura, int aya){
+            Logging.log("getAyaImage: sura["+sura+"], aya["+aya+"]");
             String fileName;
             String startLocation=TextFiles.getStartLocation();
             new File(startLocation+"images"+File.separator).mkdirs();
