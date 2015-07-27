@@ -44,7 +44,6 @@ D:\Dropbox\QuranReciterDeploy\Mac_Ubuntu\QuranReciter,
 D:\google\ReciterDeploy\QuranReciterDeploy\Windows\64\reciter,
 D:\google\ReciterDeploy\QuranReciterDeploy\Windows\32\reciter,
 D:\google\ReciterDeploy\QuranReciterDeploy\Mac_Ubuntu\QuranReciter
-J:\reciter
 ) do (
    echo deploying on [%%x]
    rem del %source%\readme.txt

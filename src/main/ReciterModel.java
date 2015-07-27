@@ -893,6 +893,13 @@ public class ReciterModel {
                             reciterChanged = false;
                         }
                         //refreshState();
+                        while (PAUSE && (!EXIT)) {
+                            Thread.sleep(1000);
+                            if (SURA_CHANGE) {
+                                break;
+                            }
+
+                        }
                         try {
                             readAya(reciter, sura, aya);
                             ayaCount++;
