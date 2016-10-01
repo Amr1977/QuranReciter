@@ -12,23 +12,14 @@ import java.awt.SystemTray;
 import java.awt.TrayIcon;
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.TreeMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.scene.media.MediaPlayer;
-
-import org.apache.commons.io.FileUtils;
-
-import test.BaseTest;
-//import main.Reciter.Downloader;
-//import common.Items;
+import logging.FreeTTS;
 import logging.Logging;
 import logging.TextFiles;
-import logging.FreeTTS;
+import test.BaseTest;
 
 //TODO mode 4 add mode each reciter reads complete sura,others read same sura afterwards
 //TODO mode 5 add mode each reciter reads complete sura,others read next suras afterwards
@@ -1122,12 +1113,13 @@ public class ReciterModel {
 
             case "n":
             case "next":
-                String next = "sura";
+                String next = "aya";
                 if (terms.length == 2) {
                     next = terms[1];
                 }
                 switch (next.toLowerCase()) {
                     case "aya":
+                    case "a":
                         //TODO fix range checking
                         if (currentAya < ayatCount[sura]) {
                             currentAya++;
@@ -1147,6 +1139,7 @@ public class ReciterModel {
                         break;
                     case "reader":
                     case "reciter":
+                    case "r":
                         if (reciter < (mashayekh.length - 1)) {
                             reciter++;
                         } else {
@@ -1160,6 +1153,8 @@ public class ReciterModel {
                         } else {
                             sura += 1;
                         }
+                        currentAya = 1;
+                        AYA_CHANGE = true;
                         Logging.log("going to next sura [" + Sura_Name[sura] + "], #" + sura, 1);
                         SURA_CHANGE = true;
                         break;
@@ -1168,12 +1163,13 @@ public class ReciterModel {
                 break;
 
             case "prev":
-                String prev = "sura";
+                String prev = "aya";
                 if (terms.length == 2) {
                     prev = terms[1];
                 }
                 switch (prev.toLowerCase()) {
                     case "aya":
+                    case "a":
                         if (currentAya > 1) {
                             currentAya--;
                         } else {
@@ -1192,6 +1188,7 @@ public class ReciterModel {
                         break;
                     case "reader":
                     case "reciter":
+                    case "r":
                         if (reciter > 0) {
                             reciter--;
                         } else {
@@ -1205,6 +1202,8 @@ public class ReciterModel {
                         } else {
                             sura -= 1;
                         }
+                        currentAya = 1;
+                        AYA_CHANGE = true;
                         Logging.log("going to previous sura [" + Sura_Name[sura] + "], #" + sura, 1);
                         SURA_CHANGE = true;
                         break;
@@ -1239,6 +1238,7 @@ public class ReciterModel {
                     Logging.log(e);
                 }
                 break;
+                
             case "download":
                 try {
                     if ("on".equals(terms[1])) {

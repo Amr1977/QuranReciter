@@ -8,22 +8,19 @@ package main;
 import common.Downloads;
 import common.Internet;
 import java.awt.Color;
-import javafx.embed.swing.JFXPanel;
-import logging.FreeTTS;
-import logging.Logging;
-import logging.TextFiles;
-
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import javafx.embed.swing.JFXPanel;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-
+import logging.FreeTTS;
+import logging.Logging;
+import logging.TextFiles;
 import test.BaseTest;
 /**
  *
@@ -204,9 +201,6 @@ public class ReciterWindow extends javax.swing.JFrame {
             suraList.setListData(surasWithNumbers);
             recitersList.setListData(readersWithNumbers());
             refreshState();
-            
-           
-           
     }
     
     public static void connectivity(){
@@ -277,6 +271,8 @@ public class ReciterWindow extends javax.swing.JFrame {
         fitWidth = new javax.swing.JCheckBox();
         randomSura = new javax.swing.JCheckBox();
         jLabelConnection = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        console = new javax.swing.JTextField();
         recitersjPanel = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         recitersList = new javax.swing.JList();
@@ -322,6 +318,11 @@ public class ReciterWindow extends javax.swing.JFrame {
         PAUSE.setMnemonic('P');
         PAUSE.setText("Pause");
         PAUSE.setToolTipText("<html> Pause reading (after aya complete) <br> key shortcut: Ctrl+Alt+P: will pause after finishing reading current verse.");
+        PAUSE.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                PAUSEStateChanged(evt);
+            }
+        });
         PAUSE.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 PAUSEMouseClicked(evt);
@@ -575,6 +576,19 @@ public class ReciterWindow extends javax.swing.JFrame {
         jLabelConnection.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabelConnection.setOpaque(true);
 
+        jButton3.setText("Next Aya");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
+
+        console.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                consoleKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout rangeJPanelLayout = new javax.swing.GroupLayout(rangeJPanel);
         rangeJPanel.setLayout(rangeJPanelLayout);
         rangeJPanelLayout.setHorizontalGroup(
@@ -618,13 +632,19 @@ public class ReciterWindow extends javax.swing.JFrame {
                                     .addComponent(Delay, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
                                     .addComponent(ayaRepeat)
                                     .addComponent(suraRepeat))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(fitHeight)
-                            .addComponent(fitWidth)
-                            .addComponent(randomSura, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
-                            .addComponent(jLabelConnection, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(417, Short.MAX_VALUE))
+                        .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(rangeJPanelLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(fitHeight)
+                                    .addComponent(fitWidth)
+                                    .addComponent(randomSura, javax.swing.GroupLayout.PREFERRED_SIZE, 149, Short.MAX_VALUE)
+                                    .addComponent(jLabelConnection, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton3)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rangeJPanelLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(console, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(456, Short.MAX_VALUE))
         );
         rangeJPanelLayout.setVerticalGroup(
             rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -659,7 +679,16 @@ public class ReciterWindow extends javax.swing.JFrame {
                                 .addGap(5, 5, 5)
                                 .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(ayaRepeatForEver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(ayaRepeatForEver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(suraRepeat, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(console, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(ayaRepeat, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(rangeJPanelLayout.createSequentialGroup()
                                 .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(rangeJPanelLayout.createSequentialGroup()
@@ -668,21 +697,15 @@ public class ReciterWindow extends javax.swing.JFrame {
                                         .addComponent(fitHeight))
                                     .addComponent(PAUSE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(randomSura)))
-                        .addGap(18, 18, 18)
-                        .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(suraRepeat, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ayaRepeat, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(randomSura)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton3)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(rangeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Delay)
                             .addComponent(jLabelConnection, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(154, Short.MAX_VALUE))
+                .addContainerGap(163, Short.MAX_VALUE))
         );
 
         rangeJPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {Delay, PAUSE, ayaRepeatForEver, jLabel2, suraRepeatForEver});
@@ -851,7 +874,7 @@ public class ReciterWindow extends javax.swing.JFrame {
                 .addGroup(modesjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(randomDelay)
                     .addComponent(rabbaniVerseRepeatCount)
-                    .addComponent(downloadMode, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+                    .addComponent(downloadMode, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(mute, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(924, Short.MAX_VALUE))
         );
@@ -1031,7 +1054,6 @@ public class ReciterWindow extends javax.swing.JFrame {
 
     private void PAUSEMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PAUSEMouseEntered
         // TODO add your handling code here:
-        
     }//GEN-LAST:event_PAUSEMouseEntered
     private void generateAyatList(int newSuraIndex){
         
@@ -1227,6 +1249,25 @@ public class ReciterWindow extends javax.swing.JFrame {
     private void suraRepeatForEverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suraRepeatForEverActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_suraRepeatForEverActionPerformed
+
+    private void PAUSEStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_PAUSEStateChanged
+    }//GEN-LAST:event_PAUSEStateChanged
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        // TODO add your handling code here:
+        ReciterModel.execute("next aya");
+    }//GEN-LAST:event_jButton3MouseClicked
+
+    private void consoleKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_consoleKeyPressed
+        // TODO add your handling code here:
+        
+        if (evt.getKeyCode() == 10) {
+          //TODO do it !  
+            ReciterModel.execute(console.getText());
+            console.setText("");
+        }
+        
+    }//GEN-LAST:event_consoleKeyPressed
     
     
     
@@ -1274,6 +1315,7 @@ public class ReciterWindow extends javax.swing.JFrame {
     public static javax.swing.JList ayaList;
     public static javax.swing.JSpinner ayaRepeat;
     public static javax.swing.JToggleButton ayaRepeatForEver;
+    private javax.swing.JTextField console;
     public static javax.swing.JToggleButton downloadMode;
     public static javax.swing.JList endAyaList;
     private javax.swing.JButton exit;
@@ -1281,6 +1323,7 @@ public class ReciterWindow extends javax.swing.JFrame {
     public static javax.swing.JCheckBox fitWidth;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -152,16 +152,25 @@
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="fitHeight" min="-2" max="-2" attributes="0"/>
-                                      <Component id="fitWidth" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="randomSura" alignment="0" pref="149" max="32767" attributes="0"/>
-                                      <Component id="jLabelConnection" alignment="0" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="fitHeight" min="-2" max="-2" attributes="0"/>
+                                              <Component id="fitWidth" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="randomSura" alignment="0" pref="149" max="32767" attributes="0"/>
+                                              <Component id="jLabelConnection" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="jButton3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                          <Component id="console" min="-2" pref="143" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace pref="417" max="32767" attributes="0"/>
+                          <EmptySpace pref="456" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -208,6 +217,17 @@
                                               <Component id="exit" alignment="3" min="-2" pref="47" max="-2" attributes="0"/>
                                               <Component id="ayaRepeatForEver" linkSize="1" alignment="3" max="32767" attributes="0"/>
                                           </Group>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="suraRepeat" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                                              <Component id="jLabel5" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                                              <Component id="console" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="ayaRepeat" alignment="0" min="-2" pref="42" max="-2" attributes="0"/>
+                                              <Component id="jLabel6" min="-2" pref="42" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
@@ -220,17 +240,9 @@
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="randomSura" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="jButton3" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="suraRepeat" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
-                                      <Component id="jLabel5" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="ayaRepeat" alignment="0" min="-2" pref="42" max="-2" attributes="0"/>
-                                      <Component id="jLabel6" min="-2" pref="42" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -240,7 +252,7 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace pref="154" max="32767" attributes="0"/>
+                          <EmptySpace pref="163" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -256,6 +268,7 @@
                     <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt; Pause reading (after aya complete) &lt;br&gt; key shortcut: Ctrl+Alt+P: will pause after finishing reading current verse."/>
                   </Properties>
                   <Events>
+                    <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="PAUSEStateChanged"/>
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="PAUSEMouseClicked"/>
                     <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="PAUSEMouseEntered"/>
                   </Events>
@@ -676,6 +689,19 @@
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
                   </AuxValues>
                 </Component>
+                <Component class="javax.swing.JButton" name="jButton3">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Next Aya"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton3MouseClicked"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JTextField" name="console">
+                  <Events>
+                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="consoleKeyPressed"/>
+                  </Events>
+                </Component>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="recitersjPanel">
@@ -857,7 +883,7 @@
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="randomDelay" min="-2" max="-2" attributes="0"/>
                               <Component id="rabbaniVerseRepeatCount" min="-2" max="-2" attributes="0"/>
-                              <Component id="downloadMode" pref="173" max="32767" attributes="0"/>
+                              <Component id="downloadMode" max="32767" attributes="0"/>
                               <Component id="mute" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace pref="924" max="32767" attributes="0"/>
