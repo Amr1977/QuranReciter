@@ -1,3 +1,3 @@
 Manifest-Version: 1.0
-X-COMMENT: Main-Class will be added automatically by build
-
+Main-Class: main.ReciterWindow
+X-COMMENT: Executable FAT JAR - All dependencies included
